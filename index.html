@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Clash of Cards</title>
+ <style>
+   body {
+     font-family: Arial, sans-serif;
+     padding: 20px;
+     background: #f4f4f4;
+   }
+
+
+   #search {
+     width: 300px;
+     padding: 10px;
+     font-size: 16px;
+   }
+
+
+   .card {
+     background: white;
+     padding: 15px;
+     margin-top: 10px;
+     border-radius: 8px;
+     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+   }
+
+
+   .card h2 {
+     margin: 0;
+     font-size: 20px;
+   }
+ </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Clash of Cards</h1>
+
+ <h2>Card Search</h2>
+ <input id="search" type="text" placeholder="Search for a card">
+
+
+ <div id="results"></div>
+
+
+ <script>
+   // -----------------------------
+   // CARD DATA
+   // -----------------------------
+   const cards = [
+     {
+       "name": "Mi-24 Pilot",
+       "Type": "Character",
+       "Archtype": "Mechanical",
+       "HP": 300,
+       "ATK": 60,
+       "DEF": 20,
+       "DEX": 22,
+       "ENG": "30 Rounds",
+       "Passives": "None",
+       "Ability": "<strong>Rocket Run:</strong> Deals (Pods used)*40 +/- 20 explosive damage. (4 pods total, recharges on land.) <strong>Escort:</strong> Can escort 8 characters at once (not inculding this one), but if a character is attacked, all other characters take same effects."
+     },
+     {
+       "name": "Tails the Fox",
+       "Type": "Character",
+       "Archtype": "Nature",
+       "HP": 175,
+       "ATK": 40,
+       "DEF": 15,
+       "DEX": 18,
+       "ENG": 8,
+       "Passives": "<strong>1:</strong> Can carry Nature Archetype character over water for 1 round. <strong>2:</strong> All Heals on Mechanical Archtypes are 1.5x as effective.",
+       "Ability": "<strong>Mecha Healer:</strong> Tails can heal a Mechanical Archtype character for 3% of their HP. (-2 ENG, 4 Round Cooldown.) <strong>Throw Partner:</strong> Tails will grab the selected teammate, and throw them at the enemy, dealing ATK*1.25. (-3 ENG, 5 Round Cooldown. It's the teammates ATK, not tail's.)"
+     },
+     {
+       "name": "Blaze the Cat",
+       "Type": "Character",
+       "Archtype": "Nature",
+       "HP": 160,
+       "ATK": 65,
+       "DEF": 15,
+       "DEX": 25,
+       "ENG": 10,
+       "Passives": "All allies gain 5 DEF, and for every Ally in her squad, she'll gain 10 DEF for herself.",
+       "Ability": "'Sol Accumulation': For any item action that occurs in Blaze's squad, she'll gain a token that increases her ATK by 5, and it stacks. Tokens can be traded in for 1 ENG each."
+     },
+     {
+       "name": "Silver the Hedgehog",
+       "Type": "Character",
+       "Archtype": "Nature",
+       "HP": 200,
+       "ATK": 45,
+       "DEF": 15,
+       "DEX": 18,
+       "ENG": "15 (+2 ENG per round until full)",
+       "Passives": "Can fly over water tiles.",
+       "Ability": "'It's no use!': Paralyze an enemy for 3 ENG per round, and a maximum of 3 rounds straight. (-3 ENG per round, 4 round cooldown) Cure an ally's stun for 2 ENG. Block an incoming attack by moving a heavy object in the way. Negates 90% of damage taken before DEF negation. (-3 ENG, 5 round cooldown)"
+     },
+     {
+       "name": "Sonic the Hedgehog",
+       "Type": "Character",
+       "Archtype": "Nature",
+       "HP": 240,
+       "ATK": 55,
+       "DEF": 18,
+       "DEX": 26,
+       "ENG": "6 (+2 per round)",
+       "Passives": "at 40 DEX, Sonic has a 95% dodge chance of any attacks.",
+       "Ability": "'Speed Build'; For 1 extra energy per round, increase DEX by 1 with a limit of 4 (+1 DEX costs 1 ENG, +2 DEX costs 2 ENG...) and when the desired DEX is reached it only costs 1 ENG every other round to maintain it. Can start and stop this move at any point with 1 round cooldown each time it's used. Cannot be used past 30 DEX."
+     },
+     {
+       "name": "MONSTER ENERGY",
+       "Type": "Item",
+       "Passives": "None",
+       "Ability": "Gives target character card 1.8x DEX for 10 rounds, but lowers Max HP 10% until end of battle. Come in 4 pack. (DEX Muntiplier is unstackable.) Additionally, whetever team has this card will go first in battle, unless contradicted by another card. Then go by hightest base DEX.",
+     },
+     {
+        "name": "Engineer/Modder",
+        "Type": "Item",
+        "Passives": "All Mechanical Archtype cards in squad take 10 less damage from any attack, and heal 1.5x as effectively.",
+        "Ability": "<strong>Technology:</strong> When this effect is applied to a Mechanical Archtype character, there's a 5% chance that any damage it takes will be multipled by 0.5x (-1 ENG per round, 5 round cooldown after). <strong>Mechanic:</strong> On any ally, buff one random stat by 10% (3 used, no Cooldown, -1 ENG. Can only be used on Mechanical Archtype cards.)"
+     },
+     {
+       "name": "Red Chaos Emerald",
+       "Type": "Item",
+       "Passives": "+2 ENG per round (until full ENG is reached). -1 Cooldown length",
+       "Active": "<strong>Flames of Disaster:</strong> Double BaseATK, any enemy hit with this attack is set on fire taking 7 damage for 5 rounds. When this move is activated, it cannot be deactivated for 3 rounds. Additionally, there's a 15% chance to miss melee attacks and 20% chance to miss ranged attacks. (-1 ENG per round maintained, 5 round cooldown)"
+     },
+     {
+       "name": "Blue Chaos Emerald",
+       "Type": "Item",
+       "Passives": "+3 DEX",
+       "Active": "Mechanical Archetypes can equip this item for an additional +4 ENG. All cooldowns are one round faster (does NOT change charge times)"
+     },
+     {
+       "name": "Purple Chaos Emerald",
+       "Type": "Item",
+       "Passives": "All attacks to the enemy do 5 extra damage.",
+       "Active": "'Discord'; Pick a target, that target will take 15 damage every round. Enemy teammates will take 3 damage every round passively. If all of the other 6 Chaos Emeralds are present and are being used by the holder of this card, all enemies take 20 damage per round and their heals are only 75% as effective."
+     },
+     {
+       "name": "Pink Chaos Emerald",
+       "Type": "Item",
+       "Active": "Passively heals the holder of this card by 20 every round and passively heals teammates by 5 every round. All other heals in the battle have 20% more effectiveness and all heals outside of battle are 100% more effective."
+     },
+     {
+       "name": "Green Chaos Emerald",
+       "Type": "Item",
+       "Active": "If the holder of this card has Chaos Harness (skillset or passive on the card) and this card is equipped as an Item, they can use the following ability: 'Chaos Control'; Teleport behind one selected enemy and deal 45 ATK. The DEF of the target will only have half of it's effectiveness."
+     },
+     {
+       "name": "Yellow Chaos Emerald",
+       "Type": "Item",
+       "Passives": "+4 ENG",
+       "Active": "'Zeus'; Call the god of thunder to smite a target enemy. It stuns Mechanical archetypes for two rounds, and sets nature archetypes on fire for 5 rounds dealing 5 damage each round. (-10 ENG, 6 Round Cooldown)"
+     },
+     {
+       "name": "White Chaos Emerald",
+       "Type": "Item",
+       "Passives": "+5 DEF",
+       "Active": "'Push'; Telekinetically throw an enemy, dealing 30 damage, stunning the enemy for one round (unless they just got out of stun the previous round) and lowering their DEX by 3 for 3 rounds. (-5 ENG, 6 Round Cooldown)"
+     },
+     {
+       "name": "Chaos Harness",
+       "Type": "Skillset",
+       "Passives": "All Chaos Emeralds individually have 10% greater effectiveness.",
+       "Active": "'Super'; (requires all 7 Chaos Emeralds) upon activation, the character with all 7 emeralds will have their Maximum HP buffed to 4,500 and healed to full. They'll have infinite ENG. They'll also have 50% dodge chance and 60 DEX. Return to normal at the end of the battle. (30 Round Cooldown)"
+     },
+   ];
+
+
+   // -----------------------------
+   // SEARCH LOGIC
+   // -----------------------------
+   document.getElementById("search").addEventListener("input", function () {
+     const query = this.value.toLowerCase();
+     const matches = cards.filter(card =>
+       card.name.toLowerCase().includes(query)
+     );
+     displayResults(matches);
+   });
+
+
+   // -----------------------------
+   // DISPLAY RESULTS
+   // -----------------------------
+   function displayResults(cards) {
+       const container = document.getElementById("results");
+
+
+        container.innerHTML = cards.map(card => {
+       return `
+       <div class="card">
+           <h2>${card.name}</h2>
+
+
+           ${card.Type !== undefined ? `<p><strong>Type:</strong> ${card.Type}</p>` : ""}
+
+           ${card.Archtype !== undefined ? `<p><strong>Archtype:</strong> ${card.Archtype}</p>` : ""}
+
+           ${card.HP !== undefined ? `<p><strong>HP:</strong> ${card.HP}</p>` : ""}
+
+           ${card.ATK !== undefined ? `<p><strong>ATK:</strong> ${card.ATK}</p>` : ""}
+
+           ${card.DEF !== undefined ? `<p><strong>DEF:</strong> ${card.DEF}</p>` : ""}
+
+           ${card.DEX !== undefined ? `<p><strong>DEX:</strong> ${card.DEX}</p>` : ""}
+
+           ${card.ENG !== undefined ? `<p><strong>ENG:</strong> ${card.ENG}</p>` : ""}
+
+           ${card.Passives !== undefined ? `<p><strong>Passives:</strong> ${card.Passives}</p>` : ""}
+
+           ${card.Ability !== undefined ? `<p><strong>Ability:</strong> ${card.Ability}</p>` : ""}
+
+           ${card.Active !== undefined ? `<p><strong>Active:</strong> ${card.Active}</p>` : ""}
+
+
+       </div>
+   `;
+   }).join("");
+   }
+ </script>
+</body>
+</html>
