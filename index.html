@@ -32,7 +32,7 @@
    }
  </style>
 </head>
-<body style="background-color: gray; color: white;">
+<body style="background-color: rgb(85, 85, 85); color: white;">
     <h1 style="text-align: center;">Clash of Cards</h1>
 
  <h2>Card Search</h2>
@@ -147,7 +147,7 @@
        "name": "MONSTER ENERGY",
        "Type": "Item",
        "Passives": "None",
-       "Ability": "Gives target character card 1.8x DEX for 10 rounds, but lowers Max HP 10% until end of battle. Come in 4 pack. (DEX Muntiplier is unstackable.) Additionally, whetever team has this card will go first in battle, unless contradicted by another card. Then go by hightest base DEX.",
+       "Ability": "Gives the target character 80% more DEX for 10 rounds, but lowers their MaxHP by 10% until the end of the battle when it returns to normal (They don't heal back that HP, it's just that the MaxHP returns.) comes in a 6 pack. DEX multiplier is not stackable. Additionally, whatever team has this will go first in battle unless contradicted by an enemy card, then go by highest BaseDEX.",
      },
      {
         "name": "Engineer/Modder",
@@ -250,6 +250,16 @@
        "Type": "Event",
        "Ability": "'Are you ready to have a bad time?': Everything in a 5inch^2 area on the map is instantly burned (take 5 damage each round for 5 rounds), poisoned (15 damage each round for 3 rounds), and a randomly selected character is reduced to 5 HP (effects all characters in the area of effect). Discard after card is used. (-5 ENG to everyone effected.)"
      },
+     {
+       "name": "Bicycle Playing Cards",
+       "Type": "Item",
+       "Ability": "Draw 5 cards from a deck of playing cards; If an Ace is drawn, you get +1 ENG along with other buffs you might get. Pair: +2 DEX (stackable with a pair of a pair), 3-Pair: +13 DEF, 4-of-a-kind: +20 MaxHP, Straight: +15 MaxHP and +15 BaseATK, Royal Straight: +5 DEX and +15 DEF, Royal Flush: All stats multiplied by 3. An Ace of Spades grants you a second life starting at 75HP and passively heal 10 HP every round until you reach 150 HP or MaxHP (whatever comes first). You can play another hand for your ally. Can redraw every 2 rounds. (-1 ENG, 2 round cooldown)"
+     },
+     {
+       "name": "Pocket Candy",
+       "Type": "Item",
+       "Ability": "(all are one time use) Red Jolly Rancher: Heal 20 HP. Purple Jolly Rancher: +1 DEX. Green Jolly Rancher: +5 DEF. Blue Jolly Rancher: +10 HP, +8 ENG. Mint Lifesaver: -10% Miss Chance Candy Lifesaver: +10% Dodge Chance (Lifesaver effects wear off in 5 rounds) 2 starbursts: Deal 20 ATK for each one used and stun enemy for 1 or 2 rounds Pop Rocks: Deal 5*d20 (roll d20) damage, if more than 80 damage is dealt to the target they're stunned for 1 round."
+     },
    ];
 
 
@@ -274,7 +284,7 @@
 
         container.innerHTML = cards.map(card => {
        return `
-       <div class="card" style="background-color: gray; color: white; border: 2px solid black;">
+       <div class="card" style="background-color: rgb(85, 85, 85); color: white; border: 2px solid black;">
            <h2>${card.name}</h2>
 
            ${card.Type !== undefined ? `<p><strong>Type:</strong> ${card.Type}</p>` : ""}
