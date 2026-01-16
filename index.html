@@ -37,6 +37,12 @@
 
  <h2>Card Search</h2>
  <input id="search" type="text" placeholder="Search for a card">
+ <div>
+   <label><input type="checkbox" id="character" checked> Characters</label>
+   <label><input type="checkbox" id="item" checked> Items</label>
+   <label><input type="checkbox" id="skillset" checked> Skillsets</label>
+   <label><input type="checkbox" id="event" checked> Events</label>
+ </div>
 
 
  <div id="results"></div>
@@ -47,6 +53,10 @@
    // CARD DATA
    // -----------------------------
    const cards = [
+
+   // -----------------------------
+   // Characters
+   // -----------------------------
      {
        "name": "Mi-24 Pilot",
        "Type": "Character",
@@ -81,7 +91,7 @@
        "DEX": 25,
        "ENG": 10,
        "Passives": "All allies gain 5 DEF, and for every Ally in her squad, she'll gain 10 DEF for herself.",
-       "Ability": "'Sol Accumulation': For any item action that occurs in Blaze's squad, she'll gain a token that increases her ATK by 5, and it stacks. Tokens can be traded in for 1 ENG each."
+       "Ability": "'<strong>Sol Accumulation:</strong>' For any item action that occurs in Blaze's squad, she'll gain a token that increases her ATK by 5, and it stacks. Tokens can be traded in for 1 ENG each."
      },
      {
        "name": "Silver the Hedgehog",
@@ -93,7 +103,7 @@
        "DEX": 18,
        "ENG": "15 (+2 ENG per round until full)",
        "Passives": "Can fly over water tiles.",
-       "Ability": "'It's no use!': Paralyze an enemy for 3 ENG per round, and a maximum of 3 rounds straight. (-3 ENG per round, 4 round cooldown) Cure an ally's stun for 2 ENG. Block an incoming attack by moving a heavy object in the way. Negates 90% of damage taken before DEF negation. (-3 ENG, 5 round cooldown)"
+       "Ability": "'<strong>It's no use!:</strong>' Paralyze an enemy for 3 ENG per round, and a maximum of 3 rounds straight. (-3 ENG per round, 4 round cooldown) Cure an ally's stun for 2 ENG. Block an incoming attack by moving a heavy object in the way. Negates 90% of damage taken before DEF negation. (-3 ENG, 5 round cooldown)"
      },
      {
        "name": "Sonic the Hedgehog",
@@ -105,7 +115,7 @@
        "DEX": 26,
        "ENG": "6 (+2 per round)",
        "Passives": "at 40 DEX, Sonic has a 95% dodge chance of any attacks.",
-       "Ability": "'Speed Build'; For 1 extra energy per round, increase DEX by 1 with a limit of 4 (+1 DEX costs 1 ENG, +2 DEX costs 2 ENG...) and when the desired DEX is reached it only costs 1 ENG every other round to maintain it. Can start and stop this move at any point with 1 round cooldown each time it's used. Cannot be used past 30 DEX."
+       "Ability": "'<strong>Speed Build:</strong>' For 1 extra energy per round, increase DEX by 1 with a limit of 4 (+1 DEX costs 1 ENG, +2 DEX costs 2 ENG...) and when the desired DEX is reached it only costs 1 ENG every other round to maintain it. Can start and stop this move at any point with 1 round cooldown each time it's used. Cannot be used past 30 DEX."
      },
      {
        "name": "Jet the Hawk",
@@ -129,7 +139,7 @@
        "DEX": 20,
        "ENG": 8,
        "Passives": "No fall damage 'Nimble'; +5% dodge chance",
-       "Ability": "'Defense Stance': Reallocate up to 50 from ATK to DEF and divide the remaining ATK by 2. This card is stun immune when in defense stance. Move is cancelled immediately without using an action if another special move, item or skillset is used by Honey. (-0 ENG, 2 round cooldown) 'Honey Glider / Pounce': Deal 70 ATK to a target opponent (not negated by DEF) and stun the opponent for a round, however, you will take on all of the opponents effects. (-4 ENG, 3 round cooldown)"
+       "Ability": "'<strong>Defense Stance:</strong>' Reallocate up to 50 from ATK to DEF and divide the remaining ATK by 2. This card is stun immune when in defense stance. Move is cancelled immediately without using an action if another special move, item or skillset is used by Honey. (-0 ENG, 2 round cooldown) '<strong>Honey Glider / Pounce:</strong>' Deal 70 ATK to a target opponent (not negated by DEF) and stun the opponent for a round, however, you will take on all of the opponents effects. (-4 ENG, 3 round cooldown)"
      },
      {
        "name": "Shadow the Hedgehog",
@@ -141,8 +151,45 @@
        "DEX": 20,
        "ENG": 10,
        "Passives": "Can match Sonic's DEX if he's a teammate (capped at 36 DEX) All of Shadow's attacks against government employees are 33% more effective.",
-       "Ability": "'Chaos Control': Teleport behind two selected enemies and deal 50 ATK to both of them (not negated by DEF). 'Chaos Blast': Charge up for one round (Shadow is invulnerable in this one round) and then deal the amount of damage that Shadow has taken back to all enemies (divide the damage equally between the enemies)."
+       "Ability": "'<strong>Chaos Control:</strong>' Teleport behind two selected enemies and deal 50 ATK to both of them (not negated by DEF). '<strong>Chaos Blast:</strong>' Charge up for one round (Shadow is invulnerable in this one round) and then deal the amount of damage that Shadow has taken back to all enemies (divide the damage equally between the enemies)."
      },
+     {
+       "name": "Nicole Watterson",
+       "Type": "Character",
+       "Archetype": "Nature",
+       "HP": 240,
+       "ATK": 80,
+       "DEF": 16,
+       "DEX": 16,
+       "ENG": 16,
+       "Passives": "'<strong>Chaos:</strong>' Every three rounds, the MaxHP and BaseATK of all friends and foes in the battle is changed by +/-20."
+     },
+     {
+       "name": "Family Guy 3",
+       "Type": "Character",
+       "Archetype": "Nature",
+       "HP": 200,
+       "ATK": "45 (+/- 10)",
+       "DEF": "20 (+/- 3)",
+       "DEX": 5,
+       "ENG": "maximum of 5, start at 3.",
+       "Ability":"say: Bird, bird, buh-birds the word ah well the bird bird bird well the bird is the word.\" and stun a target enemy for 1 round or 3 rounds if it's a bird. (-3 ENG, 2 round cooldown)"
+     },
+     {
+       "name": "Shredded (Buff Shrek)",
+       "Type": "Character",
+       "Archetype": "Nature",
+       "HP": 240,
+       "ATK": 100,
+       "DEF": 20,
+       "DEX": 14,
+       "ENG": 8,
+       "Passives": "-20% damage taken from blunt attacks. Cannot ride hovercraft or fit inside of small vehicles like the Бумер. +10% effectiveness against Mechanical archetype enemies.",
+       "Ability": "'<strong>Steely Abs:</strong>' Take only 30 damage from the next attack this card receives but also only deal 60 damage the following round and also first passive is halved when this move is active. (-3 ENG on activation, -1 ENG per round maintained, 5 round cooldown)"
+     },
+   // -----------------------------
+   // Items
+   // -----------------------------
      {
        "name": "MONSTER ENERGY",
        "Type": "Item",
@@ -171,7 +218,7 @@
        "name": "Purple Chaos Emerald",
        "Type": "Item",
        "Passives": "All attacks to the enemy do 5 extra damage.",
-       "Active": "'Discord'; Pick a target, that target will take 15 damage every round. Enemy teammates will take 3 damage every round passively. If all of the other 6 Chaos Emeralds are present and are being used by the holder of this card, all enemies take 20 damage per round and their heals are only 75% as effective."
+       "Active": "'<strong>Discord:</strong>' Pick a target, that target will take 15 damage every round. Enemy teammates will take 3 damage every round passively. If all of the other 6 Chaos Emeralds are present and are being used by the holder of this card, all enemies take 20 damage per round and their heals are only 75% as effective."
      },
      {
        "name": "Pink Chaos Emerald",
@@ -181,84 +228,56 @@
      {
        "name": "Green Chaos Emerald",
        "Type": "Item",
-       "Active": "If the holder of this card has Chaos Harness (skillset or passive on the card) and this card is equipped as an Item, they can use the following ability: 'Chaos Control'; Teleport behind one selected enemy and deal 45 ATK. The DEF of the target will only have half of it's effectiveness."
+       "Active": "If the holder of this card has Chaos Harness (skillset or passive on the card) and this card is equipped as an Item, they can use the following ability: '<strong>Chaos Control:</strong>' Teleport behind one selected enemy and deal 45 ATK. The DEF of the target will only have half of it's effectiveness."
      },
      {
        "name": "Yellow Chaos Emerald",
        "Type": "Item",
        "Passives": "+4 ENG",
-       "Active": "'Zeus'; Call the god of thunder to smite a target enemy. It stuns Mechanical archetypes for two rounds, and sets nature archetypes on fire for 5 rounds dealing 5 damage each round. (-10 ENG, 6 Round Cooldown)"
+       "Active": "'<strong>Zeus:</strong>' Call the god of thunder to smite a target enemy. It stuns Mechanical archetypes for two rounds, and sets nature archetypes on fire for 5 rounds dealing 5 damage each round. (-10 ENG, 6 Round Cooldown)"
      },
      {
        "name": "White Chaos Emerald",
        "Type": "Item",
        "Passives": "+5 DEF",
-       "Active": "'Push'; Telekinetically throw an enemy, dealing 30 damage, stunning the enemy for one round (unless they just got out of stun the previous round) and lowering their DEX by 3 for 3 rounds. (-5 ENG, 6 Round Cooldown)"
+       "Active": "'<strong>Push:</strong>' Telekinetically throw an enemy, dealing 30 damage, stunning the enemy for one round (unless they just got out of stun the previous round) and lowering their DEX by 3 for 3 rounds. (-5 ENG, 6 Round Cooldown)"
      },
+     {
+       "name": "Jim's Soul",
+       "Type": "Item",
+       "Ability": "'<strong>Consume:</strong>' Copy any card (incl. Character types) by sacrificing a character you own."
+     },
+     {
+       "name": "Bicycle Playing Cards",
+       "Type": "Item",
+       "Ability": "Draw 5 cards from a deck of playing cards; If an Ace is drawn, you get +1 ENG along with other buffs you might get. <strong>Pair:</strong> +2 DEX (stackable with a pair of a pair), <strong>3-Pair:</strong> +13 DEF, <strong>4-of-a-kind:</strong> +20 MaxHP, <strong>Straight:</strong> +15 MaxHP and +15 BaseATK, <strong>Royal Straight:</strong> +5 DEX and +15 DEF, <strong>Royal Flush:</strong> All stats multiplied by 3. An Ace of Spades grants you a second life starting at 75HP and passively heal 10 HP every round until you reach 150 HP or MaxHP (whatever comes first). You can play another hand for your ally. Can redraw every 2 rounds. (-1 ENG, 2 round cooldown)"
+     },
+     {
+       "name": "Pocket Candy",
+       "Type": "Item",
+       "Ability": "(all are one time use) <strong>Red Jolly Rancher:</strong> Heal 20 HP. <strong>Purple Jolly Rancher:</strong> +1 DEX. <strong>Green Jolly Rancher:</strong> +5 DEF. <strong>Blue Jolly Rancher:</strong> +10 HP, +8 ENG. <strong>Mint Lifesaver:</strong> -10% Miss Chance <strong>Candy Lifesaver:</strong> +10% Dodge Chance (Lifesaver effects wear off in 5 rounds) <strong>2 starbursts:</strong> Deal 20 ATK for each one used and stun enemy for 1 or 2 rounds <strong>Pop Rocks:</strong> Deal 5*d20 (roll d20) damage, if more than 80 damage is dealt to the target they're stunned for 1 round."
+     },
+   // -----------------------------
+   // Skillsets
+   // -----------------------------
      {
        "name": "Chaos Harness",
        "Type": "Skillset",
        "Passives": "All Chaos Emeralds individually have 10% greater effectiveness.",
-       "Active": "'Super'; (requires all 7 Chaos Emeralds) upon activation, the character with all 7 emeralds will have their Maximum HP buffed to 4,500 and healed to full. They'll have infinite ENG. They'll also have 50% dodge chance and 60 DEX. Return to normal at the end of the battle. (30 Round Cooldown)"
-     },
-     {
-       "name": "Nicole Watterson",
-       "Type": "Character",
-       "Archetype": "Nature",
-       "HP": 240,
-       "ATK": 80,
-       "DEF": 16,
-       "DEX": 16,
-       "ENG": 16,
-       "Passives": "'Chaos'; Every three rounds, the MaxHP and BaseATK of all friends and foes in the battle is changed by +/-20."
-     },
-     {
-       "name": "Family Guy 3",
-       "Type": "Character",
-       "Archetype": "Nature",
-       "HP": 200,
-       "ATK": "45 (+/- 10)",
-       "DEF": "20 (+/- 3)",
-       "DEX": 5,
-       "ENG": "maximum of 5, start at 3.",
-       "Ability":"say: Bird, bird, buh-birds the word ah well the bird bird bird well the bird is the word.\" and stun a target enemy for 1 round or 3 rounds if it's a bird. (-3 ENG, 2 round cooldown)"
-     },
-     {
-       "name": "Shredded (Buff Shrek)",
-       "Type": "Character",
-       "Archetype": "Nature",
-       "HP": 240,
-       "ATK": 100,
-       "DEF": 20,
-       "DEX": 14,
-       "ENG": 8,
-       "Passives": "-20% damage taken from blunt attacks. Cannot ride hovercraft or fit inside of small vehicles like the Бумер. +10% effectiveness against Mechanical archetype enemies.",
-       "Ability": "'Steely Abs' Take only 30 damage from the next attack this card receives but also only deal 60 damage the following round and also first passive is halved when this move is active. (-3 ENG on activation, -1 ENG per round maintained, 5 round cooldown)"
+       "Active": "'<strong>Super:</strong>' (requires all 7 Chaos Emeralds) upon activation, the character with all 7 emeralds will have their Maximum HP buffed to 4,500 and healed to full. They'll have infinite ENG. They'll also have 50% dodge chance and 60 DEX. Return to normal at the end of the battle. (30 Round Cooldown)"
      },
      {
        "name": "Jim's Talent",
        "Type": "Skillset",
        "Passives": "Buff all stats by 50 with a 10% chance to explode and die instantly every turn."
      },
-     {
-       "name": "Jim's Soul",
-       "Type": "Item",
-       "Ability": "'Consume': Copy any card (incl. Character types) by sacrificing a character you own."
-     },
+   // -----------------------------
+   // Events
+   // -----------------------------
      {
        "name": "Jim's Reckoning",
        "Type": "Event",
-       "Ability": "'Are you ready to have a bad time?': Everything in a 5inch^2 area on the map is instantly burned (take 5 damage each round for 5 rounds), poisoned (15 damage each round for 3 rounds), and a randomly selected character is reduced to 5 HP (effects all characters in the area of effect). Discard after card is used. (-5 ENG to everyone effected.)"
-     },
-     {
-       "name": "Bicycle Playing Cards",
-       "Type": "Item",
-       "Ability": "Draw 5 cards from a deck of playing cards; If an Ace is drawn, you get +1 ENG along with other buffs you might get. Pair: +2 DEX (stackable with a pair of a pair), 3-Pair: +13 DEF, 4-of-a-kind: +20 MaxHP, Straight: +15 MaxHP and +15 BaseATK, Royal Straight: +5 DEX and +15 DEF, Royal Flush: All stats multiplied by 3. An Ace of Spades grants you a second life starting at 75HP and passively heal 10 HP every round until you reach 150 HP or MaxHP (whatever comes first). You can play another hand for your ally. Can redraw every 2 rounds. (-1 ENG, 2 round cooldown)"
-     },
-     {
-       "name": "Pocket Candy",
-       "Type": "Item",
-       "Ability": "(all are one time use) Red Jolly Rancher: Heal 20 HP. Purple Jolly Rancher: +1 DEX. Green Jolly Rancher: +5 DEF. Blue Jolly Rancher: +10 HP, +8 ENG. Mint Lifesaver: -10% Miss Chance Candy Lifesaver: +10% Dodge Chance (Lifesaver effects wear off in 5 rounds) 2 starbursts: Deal 20 ATK for each one used and stun enemy for 1 or 2 rounds Pop Rocks: Deal 5*d20 (roll d20) damage, if more than 80 damage is dealt to the target they're stunned for 1 round."
+       "Ability": "'<strong>Are you ready to have a bad time?:</strong>' Everything in a 5inch^2 area on the map is instantly burned (take 5 damage each round for 5 rounds), poisoned (15 damage each round for 3 rounds), and a randomly selected character is reduced to 5 HP (effects all characters in the area of effect). Discard after card is used. (-5 ENG to everyone effected.)"
      },
    ];
 
@@ -266,13 +285,31 @@
    // -----------------------------
    // SEARCH LOGIC
    // -----------------------------
-   document.getElementById("search").addEventListener("input", function () {
-     const query = this.value.toLowerCase();
-     const matches = cards.filter(card =>
-       card.name.toLowerCase().includes(query)
-     );
+   function filterCards() {
+     const query = document.getElementById("search").value.toLowerCase();
+     const showCharacter = document.getElementById("character").checked;
+     const showItem = document.getElementById("item").checked;
+     const showSkillset = document.getElementById("skillset").checked;
+     const showEvent = document.getElementById("event").checked;
+     const matches = cards.filter(card => {
+       const matchesQuery = card.name.toLowerCase().includes(query);
+       const matchesType = (card.Type === "Character" && showCharacter) ||
+                           (card.Type === "Item" && showItem) ||
+                           (card.Type === "Skillset" && showSkillset) ||
+                           (card.Type === "Event" && showEvent);
+       return matchesQuery && matchesType;
+     });
      displayResults(matches);
-   });
+   }
+
+   document.getElementById("search").addEventListener("input", filterCards);
+   document.getElementById("character").addEventListener("change", filterCards);
+   document.getElementById("item").addEventListener("change", filterCards);
+   document.getElementById("skillset").addEventListener("change", filterCards);
+   document.getElementById("event").addEventListener("change", filterCards);
+
+   // Initial display
+   filterCards();
 
 
    // -----------------------------
