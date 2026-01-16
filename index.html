@@ -32,7 +32,7 @@
    }
  </style>
 </head>
-<body>
+<body style="background-color: gray; color: white;">
     <h1 style="text-align: center;">Clash of Cards</h1>
 
  <h2>Card Search</h2>
@@ -50,7 +50,7 @@
      {
        "name": "Mi-24 Pilot",
        "Type": "Character",
-       "Archtype": "Mechanical",
+       "Archetype": "Mechanical",
        "HP": 300,
        "ATK": 60,
        "DEF": 20,
@@ -62,19 +62,19 @@
      {
        "name": "Tails the Fox",
        "Type": "Character",
-       "Archtype": "Nature",
+       "Archetype": "Nature",
        "HP": 175,
        "ATK": 40,
        "DEF": 15,
        "DEX": 18,
        "ENG": 8,
-       "Passives": "<strong>1:</strong> Can carry Nature Archetype character over water for 1 round. <strong>2:</strong> All Heals on Mechanical Archtypes are 1.5x as effective.",
-       "Ability": "<strong>Mecha Healer:</strong> Tails can heal a Mechanical Archtype character for 3% of their HP. (-2 ENG, 4 Round Cooldown.) <strong>Throw Partner:</strong> Tails will grab the selected teammate, and throw them at the enemy, dealing ATK*1.25. (-3 ENG, 5 Round Cooldown. It's the teammates ATK, not tail's.)"
+       "Passives": "<strong>1:</strong> Can carry Nature Archetype character over water for 1 round. <strong>2:</strong> All Heals on Mechanical Archetypes are 1.5x as effective.",
+       "Ability": "<strong>Mecha Healer:</strong> Tails can heal a Mechanical Archetype character for 3% of their HP. (-2 ENG, 4 Round Cooldown.) <strong>Throw Partner:</strong> Tails will grab the selected teammate, and throw them at the enemy, dealing ATK*1.25. (-3 ENG, 5 Round Cooldown. It's the teammates ATK, not tail's.)"
      },
      {
        "name": "Blaze the Cat",
        "Type": "Character",
-       "Archtype": "Nature",
+       "Archetype": "Nature",
        "HP": 160,
        "ATK": 65,
        "DEF": 15,
@@ -86,7 +86,7 @@
      {
        "name": "Silver the Hedgehog",
        "Type": "Character",
-       "Archtype": "Nature",
+       "Archetype": "Nature",
        "HP": 200,
        "ATK": 45,
        "DEF": 15,
@@ -98,7 +98,7 @@
      {
        "name": "Sonic the Hedgehog",
        "Type": "Character",
-       "Archtype": "Nature",
+       "Archetype": "Nature",
        "HP": 240,
        "ATK": 55,
        "DEF": 18,
@@ -110,7 +110,7 @@
      {
        "name": "Jet the Hawk",
        "Type": "Character",
-       "Archtype": "Nature",
+       "Archetype": "Nature",
        "HP": 150,
        "ATK": 50,
        "DEF": 10,
@@ -122,7 +122,7 @@
      {
        "name": "Honey the Cat",
        "Type": "Character",
-       "Archtype": "Nature",
+       "Archetype": "Nature",
        "HP": 230,
        "ATK": 95,
        "DEF": 15,
@@ -134,7 +134,7 @@
      {
        "name": "Shadow the Hedgehog",
        "Type": "Character",
-       "Archtype": "Nature",
+       "Archetype": "Nature",
        "HP": 250,
        "ATK": 60,
        "DEF": 20,
@@ -152,8 +152,8 @@
      {
         "name": "Engineer/Modder",
         "Type": "Item",
-        "Passives": "All Mechanical Archtype cards in squad take 10 less damage from any attack, and heal 1.5x as effectively.",
-        "Ability": "<strong>Technology:</strong> When this effect is applied to a Mechanical Archtype character, there's a 5% chance that any damage it takes will be multipled by 0.5x (-1 ENG per round, 5 round cooldown after). <strong>Mechanic:</strong> On any ally, buff one random stat by 10% (3 used, no Cooldown, -1 ENG. Can only be used on Mechanical Archtype cards.)"
+        "Passives": "All Mechanical Archetype cards in squad take 10 less damage from any attack, and heal 1.5x as effectively.",
+        "Ability": "<strong>Technology:</strong> When this effect is applied to a Mechanical Archetype character, there's a 5% chance that any damage it takes will be multipled by 0.5x (-1 ENG per round, 5 round cooldown after). <strong>Mechanic:</strong> On any ally, buff one random stat by 10% (3 used, no Cooldown, -1 ENG. Can only be used on Mechanical Archetype cards.)"
      },
      {
        "name": "Red Chaos Emerald",
@@ -204,7 +204,7 @@
      {
        "name": "Nicole Watterson",
        "Type": "Character",
-       "Archtype": "Nature",
+       "Archetype": "Nature",
        "HP": 240,
        "ATK": 80,
        "DEF": 16,
@@ -215,7 +215,7 @@
      {
        "name": "Family Guy 3",
        "Type": "Character",
-       "Archtype": "Nature",
+       "Archetype": "Nature",
        "HP": 200,
        "ATK": "45 (+/- 10)",
        "DEF": "20 (+/- 3)",
@@ -226,7 +226,7 @@
      {
        "name": "Shredded (Buff Shrek)",
        "Type": "Character",
-       "Archtype": "Nature",
+       "Archetype": "Nature",
        "HP": 240,
        "ATK": 100,
        "DEF": 20,
@@ -280,7 +280,7 @@
 
            ${card.Type !== undefined ? `<p><strong>Type:</strong> ${card.Type}</p>` : ""}
 
-           ${card.Archtype !== undefined ? `<p><strong>Archtype:</strong> ${card.Archtype}</p>` : ""}
+           ${card.Archetype !== undefined ? `<p><strong>Archetype:</strong> ${card.Archetype}</p>` : ""}
 
            ${card.HP !== undefined ? `<p><strong>HP:</strong> ${card.HP}</p>` : ""}
 
