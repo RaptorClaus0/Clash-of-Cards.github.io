@@ -274,9 +274,8 @@
 
         container.innerHTML = cards.map(card => {
        return `
-       <div class="card">
+       <div class="card" style="background-color: gray; color: white; border: 2px solid black;">
            <h2>${card.name}</h2>
-
 
            ${card.Type !== undefined ? `<p><strong>Type:</strong> ${card.Type}</p>` : ""}
 
