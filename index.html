@@ -113,7 +113,6 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.85); /* Darken background */
       backdrop-filter: blur(5px);
       z-index: 9999;
       justify-content: center;
@@ -125,10 +124,9 @@
     /* The version of the card inside the modal */
     #modal-content-wrapper .card {
       width: 100%;
-      max-width: 600px; /* Bigger on screen */
-      max-height: 90vh;
+      max-width: 100%; /* Bigger on screen */
+      max-height: 100%;
       overflow-y: auto; /* Scroll if text is huge */
-      background: #1a1a2e;
       border: 3px solid #00ffff;
       cursor: default;
       animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
