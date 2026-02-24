@@ -1,4 +1,4 @@
-* {
+    * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -27,7 +27,6 @@
       color: #00d4ff;
     }
 
-    /* Search Input Styling */
     #search {
       width: 100%;
       max-width: 400px;
@@ -52,7 +51,6 @@
       background: rgba(255, 255, 255, 0.15);
     }
 
-    /* Filter Checkboxes Container */
     .filter-container {
       display: flex;
       flex-wrap: wrap;
@@ -78,7 +76,6 @@
       color: #00ffff;
     }
 
-    /* Custom Checkbox Styling */
     input[type="checkbox"] {
       width: 18px;
       height: 18px;
@@ -86,7 +83,6 @@
       accent-color: #00d4ff;
     }
 
-    /* Card Styling */
     #results {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -128,7 +124,6 @@
       color: #00d4ff;
     }
 
-    /* Responsive Design */
     @media (max-width: 768px) {
       body {
         padding: 15px;
@@ -157,7 +152,6 @@
       }
     }
 
-    /* Scrollbar Styling (Optional - for better look) */
     ::-webkit-scrollbar {
       width: 10px;
     }
