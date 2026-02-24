@@ -3,6 +3,7 @@
 <head>
   <title>Clash of Cards</title>
   <style>
+    /* --- YOUR ORIGINAL STYLES --- */
     * {
       margin: 0;
       padding: 0;
@@ -45,17 +46,6 @@
       margin-bottom: 20px;
     }
 
-    #search::placeholder {
-      color: rgba(224, 224, 224, 0.6);
-    }
-
-    #search:focus {
-      outline: none;
-      border-color: #00ffff;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.15);
-    }
-
     .filter-container {
       display: flex;
       flex-wrap: wrap;
@@ -72,20 +62,6 @@
       align-items: center;
       gap: 8px;
       cursor: pointer;
-      font-size: 1rem;
-      user-select: none;
-      transition: color 0.2s ease;
-    }
-
-    label:hover {
-      color: #00ffff;
-    }
-
-    input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-      accent-color: #00d4ff;
     }
 
     #results {
@@ -102,13 +78,13 @@
       padding: 20px;
       transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      cursor: zoom-in; /* Let users know they can click */
     }
 
     .card:hover {
       transform: translateY(-8px);
       border-color: #00ffff;
       box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
     }
 
     .card h2 {
@@ -129,50 +105,52 @@
       color: #00d4ff;
     }
 
-    @media (max-width: 768px) {
-      body {
-        padding: 15px;
-      }
-
-      h1 {
-        font-size: 1.8rem;
-        margin-bottom: 20px;
-      }
-
-      #search {
-        max-width: 100%;
-      }
-
-      .filter-container {
-        gap: 12px;
-        flex-direction: column;
-      }
-
-      #results {
-        grid-template-columns: 1fr;
-      }
-
-      .card {
-        padding: 15px;
-      }
+    /* --- EXPANSION MODAL STYLES --- */
+    #card-modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85); /* Darken background */
+      backdrop-filter: blur(5px);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      cursor: zoom-out;
     }
 
-    ::-webkit-scrollbar {
-      width: 10px;
+    /* The version of the card inside the modal */
+    #modal-content-wrapper .card {
+      width: 100%;
+      max-width: 600px; /* Bigger on screen */
+      max-height: 90vh;
+      overflow-y: auto; /* Scroll if text is huge */
+      background: #1a1a2e;
+      border: 3px solid #00ffff;
+      cursor: default;
+      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    ::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.05);
+    @keyframes popIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
-    ::-webkit-scrollbar-thumb {
-      background: #00d4ff;
-      border-radius: 5px;
+    .close-hint {
+      position: absolute;
+      top: 20px;
+      color: #00d4ff;
+      font-weight: bold;
+      pointer-events: none;
     }
 
-    ::-webkit-scrollbar-thumb:hover {
-      background: #00ffff;
-    }
+    /* Scrollbar for large cards */
+    .card::-webkit-scrollbar { width: 6px; }
+    .card::-webkit-scrollbar-thumb { background: #00d4ff; border-radius: 10px; }
+
   </style>
 </head>
 <body>
