@@ -1,10 +1,179 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Clash of Cards</title>
+  <title>Clash of Cards</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #e0e0e0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: #00d4ff;
+      text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      margin-top: 25px;
+      margin-bottom: 15px;
+      color: #00d4ff;
+    }
+
+    #search {
+      width: 100%;
+      max-width: 400px;
+      padding: 12px 15px;
+      font-size: 16px;
+      border: 2px solid #00d4ff;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #e0e0e0;
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+    }
+
+    #search::placeholder {
+      color: rgba(224, 224, 224, 0.6);
+    }
+
+    #search:focus {
+      outline: none;
+      border-color: #00ffff;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .filter-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 25px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      border-left: 4px solid #00d4ff;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      user-select: none;
+      transition: color 0.2s ease;
+    }
+
+    label:hover {
+      color: #00ffff;
+    }
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: #00d4ff;
+    }
+
+    #results {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 2px solid #00d4ff;
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #00ffff;
+      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    }
+
+    .card h2 {
+      margin: 0 0 15px 0;
+      font-size: 1.5rem;
+      color: #00ffff;
+      border-bottom: 2px solid #00d4ff;
+      padding-bottom: 10px;
+    }
+
+    .card p {
+      margin: 10px 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .card strong {
+      color: #00d4ff;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+
+      #search {
+        max-width: 100%;
+      }
+
+      .filter-container {
+        gap: 12px;
+        flex-direction: column;
+      }
+
+      #results {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 15px;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #00d4ff;
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00ffff;
+    }
+  </style>
 </head>
 <body>
     <h1>Clash of Cards</h1>
