@@ -3,15 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>Clash of Cards</title>
+    <script>
+        function displayResults(results) {
+            const resultsContainer = document.getElementById('results');
+            resultsContainer.innerHTML = ''; // Clear previous results
+            results.forEach(result => {
+                const div = document.createElement('div');
+                div.textContent = result;
+                resultsContainer.appendChild(div);
+            });
+        }
+    </script>
 </head>
 <body>
-    <!-- Card templates without inline styles -->
-    <div class="card">
-        <h2>Card Title</h2>
-        <p>Card content goes here.</p>
+    <div>
+        <h1>Search for Cards</h1>
+        <input type="text" id="searchInput" placeholder="Search cards...">
+        <div>
+            <label><input type="checkbox" name="filter" value="type1"> Type 1</label>
+            <label><input type="checkbox" name="filter" value="type2"> Type 2</label>
+            <label><input type="checkbox" name="filter" value="type3"> Type 3</label>
+        </div>
+        <button onclick="searchCards()">Search</button>
+        <div id="results"></div>
     </div>
-    <!-- Other HTML content -->
+
+    <script>
+        function searchCards() {
+            // Mockup search logic, would normally call an API
+            const searchInput = document.getElementById('searchInput').value;
+            const results = ['Card 1', 'Card 2', 'Card 3']; // Example results
+            displayResults(results);
+        }
+    </script>
 </body>
 </html>
