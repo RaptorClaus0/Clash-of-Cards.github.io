@@ -168,15 +168,15 @@
 
     <div id="results"></div>
 
-<script>
-   // -----------------------------
-   // CARD DATA
-   // -----------------------------
-   const cards = [
+    <div id="card-modal" onclick="closeModal()">
+        <div class="close-hint">Click anywhere to close</div>
+        <div id="modal-content-wrapper" onclick="event.stopPropagation()">
+            </div>
+    </div>
 
-   // -----------------------------
-   // Characters
-   // -----------------------------
+<script>
+   const cards = [
+     // ... (Your card data stays exactly the same) ...
      {
        "name": "Mil Mi-24 Attack Helicopter + Pilot",
        "Type": "Character",
@@ -306,9 +306,6 @@
        "Passives": "-20% damage taken from blunt attacks. Cannot ride hovercraft or fit inside of small vehicles like the Бумер. +10% effectiveness against Mechanical archetype enemies.",
        "Ability": "<br><strong>Steely Abs:</strong> Take only 30 damage from the next attack this card receives but also only deal 60 damage the following round and also first passive is halved when this move is active. (-3 ENG on activation, -1 ENG per round maintained, 5 round cooldown)"
      },
-   // -----------------------------
-   // Items
-   // -----------------------------
      {
        "name": "MONSTER ENERGY",
        "Type": "Item",
@@ -381,9 +378,6 @@
        "Type": "Item",
        "Ability": "<br> <strong>Escape:</strong> When used, it will take 3 rounds for a helicopter to arrive and two rounds for characters to board and leave respectively. (-1 ENG, 20 round cooldown, 3 uses before discard). During those 2 rounds, characters boarding can only be attacked in the first round and cannot attack back, and in the second round the helicopter can be destroyed by Tails' Throw Partner move, Sonic's BaseATK (50% chance to miss), FIM-92 Stinger (20% miss chance), Kamikaze Drone (20% miss chance), and/or a Super Character with the 7 Chaos Emeralds (0% miss chance). Upon successful escape, all characters are healed to full HP and if a character died while boarding they are revived with 50% health."
      },
-   // -----------------------------
-   // Skillsets
-   // -----------------------------
      {
        "name": "Chaos Harness",
        "Type": "Skillset",
@@ -395,15 +389,11 @@
        "Type": "Skillset",
        "Passives": "Buff all stats by 50 with a 10% chance to explode and die instantly every turn."
      },
-   // -----------------------------
-   // Events
-   // -----------------------------
      {
        "name": "Jim's Reckoning",
        "Type": "Event",
        "Ability": "<br> <strong>Are you ready to have a bad time?:</strong> Everything in a 5inch^2 area on the map is instantly burned (take 5 damage each round for 5 rounds), poisoned (15 damage each round for 3 rounds), and a randomly selected character is reduced to 5 HP. Discard after card is used. (-5 ENG to everyone effected.)"
      },
-   // Events(bosses)
      {
        "name": "Kolossos",
        "Type": "Event",
@@ -445,23 +435,18 @@
    document.getElementById("skillset").addEventListener("change", filterCards);
    document.getElementById("event").addEventListener("change", filterCards);
 
-   // Initial disply
-   filterCards();
-
    // -----------------------------
-   // DISPLAY RESULTS
+   // DISPLAY RESULTS (Updated with Expansion)
    // -----------------------------
    function displayResults(cards) {
        const container = document.getElementById("results");
 
-
         container.innerHTML = cards.map(card => {
        return `
-       <div class="card">
+       <div class="card" onclick="openModal(this)">
            <h2>${card.name}</h2>
-
            ${card.Type !== undefined ? `<p><strong>Type:</strong> ${card.Type}</p>` : ""}
-           ${card.Type !== undefined ? `<p><strong>SubType:</strong> ${card.SubType}</p>` : ""}
+           ${card.SubType !== undefined ? `<p><strong>SubType:</strong> ${card.SubType}</p>` : ""}
            ${card.Archetype !== undefined ? `<p><strong>Archetype:</strong> ${card.Archetype}</p>` : ""}
            ${card.HP !== undefined ? `<p><strong>HP:</strong> ${card.HP}</p>` : ""}
            ${card.ATK !== undefined ? `<p><strong>ATK:</strong> ${card.ATK}</p>` : ""}
@@ -471,12 +456,44 @@
            ${card.Passives !== undefined ? `<p><strong>Passives:</strong> ${card.Passives}</p>` : ""}
            ${card.Ability !== undefined ? `<p><strong>Ability:</strong> ${card.Ability}</p>` : ""}
            ${card.Active !== undefined ? `<p><strong>Active:</strong> ${card.Active}</p>` : ""}
-           ${card.Ability !== undefined ? `<p><strong>Extra:</strong> ${card.Extra}</p>` : ""}
-
+           ${card.Extra !== undefined ? `<p><strong>Extra:</strong> ${card.Extra}</p>` : ""}
        </div>
    `;
    }).join("");
    }
+
+   // -----------------------------
+   // MODAL LOGIC
+   // -----------------------------
+   function openModal(cardElement) {
+       const modal = document.getElementById('card-modal');
+       const wrapper = document.getElementById('modal-content-wrapper');
+       
+       // Clone the card so we don't move the original one
+       const clonedCard = cardElement.cloneNode(true);
+       
+       // Remove the click event from the clone so it doesn't try to "re-expand"
+       clonedCard.onclick = null;
+       
+       wrapper.innerHTML = ""; // Clear old content
+       wrapper.appendChild(clonedCard);
+       
+       modal.style.display = 'flex';
+       document.body.style.overflow = 'hidden'; // Stop background scrolling
+   }
+
+   function closeModal() {
+       document.getElementById('card-modal').style.display = 'none';
+       document.body.style.overflow = 'auto'; // Re-enable scrolling
+   }
+
+   // Close with Escape key
+   window.addEventListener('keydown', (e) => {
+       if (e.key === "Escape") closeModal();
+   });
+
+   // Initial display
+   filterCards();
  </script>
 </body>
 </html>
