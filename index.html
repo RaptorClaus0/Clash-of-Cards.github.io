@@ -11,7 +11,7 @@
 
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #1a1a2e 0%, #3e1616 100%);
+        background: linear-gradient(90deg, #1a1a2e 0%, #3e1616 100%);
         color: #e0e0e0;
         padding: 20px;
         min-height: 100vh;
@@ -173,6 +173,7 @@
       <label><input type="checkbox" id="item" checked /> Items</label>
       <label><input type="checkbox" id="skillset" checked /> Skillsets</label>
       <label><input type="checkbox" id="event" checked /> Events</label>
+      <label><input type="checkbox" id="art" /> Art</label>
     </div>
 
     <div id="results"></div>
@@ -186,7 +187,7 @@
       const cards = [
         {
           name: "Mil Mi-24 Attack Helicopter + Pilot",
-          Type: "Character",
+          type: "Character",
           Archetype: "Mechanical",
           HP: 300,
           ATK: 60,
@@ -198,7 +199,7 @@
         }, //POV: 80 S-8 Rockets direct impacting a hedgehog.
         {
           name: "Tails the Fox",
-          Type: "Character",
+          type: "Character",
           Archetype: "Nature",
           HP: 175,
           ATK: 40,
@@ -212,7 +213,7 @@
         },
         {
           name: "Blaze the Cat",
-          Type: "Character",
+          type: "Character",
           Archetype: "Nature",
           HP: 160,
           ATK: 65,
@@ -227,7 +228,7 @@
         //I have a boyfriend. -Brayden
         {
           name: "Silver the Hedgehog",
-          Type: "Character",
+          type: "Character",
           Archetype: "Nature",
           HP: 200,
           ATK: 45,
@@ -240,7 +241,7 @@
         },
         {
           name: "Sonic the Hedgehog",
-          Type: "Character",
+          type: "Character",
           Archetype: "Nature",
           HP: 240,
           ATK: 55,
@@ -253,7 +254,7 @@
         },
         {
           name: "Jet the Hawk",
-          Type: "Character",
+          type: "Character",
           Archetype: "Nature",
           HP: 150,
           ATK: 50,
@@ -266,7 +267,7 @@
         },
         {
           name: "Honey the Cat",
-          Type: "Character",
+          type: "Character",
           Archetype: "Nature",
           HP: 230,
           ATK: 95,
@@ -279,7 +280,7 @@
         },
         {
           name: "Shadow the Hedgehog",
-          Type: "Character",
+          type: "Character",
           Archetype: "Nature",
           HP: 250,
           ATK: 60,
@@ -293,7 +294,7 @@
         }, //ALL HAIL SHADOW!!! Also has combat related PTSD from when he was direct impacted by 80 S-8 unguided rockets from an Mi-24 Attack Helicopter.
         {
           name: "Nicole Watterson",
-          Type: "Character",
+          type: "Character",
           Archetype: "Nature",
           HP: 240,
           ATK: 80,
@@ -305,7 +306,7 @@
         },
         {
           name: "Family Guy 3",
-          Type: "Character",
+          type: "Character",
           Archetype: "Nature",
           HP: 200,
           ATK: "45 (+/- 10)",
@@ -317,7 +318,7 @@
         },
         {
           name: "Shredded (Buff Shrek)",
-          Type: "Character",
+          type: "Character",
           Archetype: "Nature",
           HP: 240,
           ATK: 100,
@@ -331,14 +332,14 @@
         }, //I like 'em big, I like 'em chunky.
         {
           name: "MONSTER ENERGY",
-          Type: "Item",
+          type: "Item",
           Passives: "None",
           Ability:
             "Gives the target character 80% more DEX for 10 rounds, but lowers their MaxHP by 10% until the end of the battle when it returns to normal (They don't heal back that HP, it's just that the MaxHP returns.) comes in a 6 pack. DEX multiplier is not stackable. Additionally, whatever team has this will go first in battle unless contradicted by an enemy card, then go by highest BaseDEX.",
         }, //It's green, so it's nature! Also holy shit it's expensive.
         {
           name: "Engineer/Modder",
-          Type: "Item",
+          type: "Item",
           Passives:
             "All Mechanical Archetype cards in squad take 10 less damage from any attack, and heal 1.5x as effectively.",
           Ability:
@@ -346,7 +347,7 @@
         }, //The engineer is engiNEARING MY FUCKING LIMIT!
         {
           name: "Red Chaos Emerald",
-          Type: "Item",
+          type: "Item",
           Passives:
             "+2 ENG per round (until full ENG is reached). -1 Cooldown length",
           Active:
@@ -354,71 +355,71 @@
         },
         {
           name: "Blue Chaos Emerald",
-          Type: "Item",
+          type: "Item",
           Passives: "+3 DEX",
           Active:
             "Mechanical Archetypes can equip this item for an additional +4 ENG. All cooldowns are one round faster (does NOT change charge times)",
         },
         {
           name: "Purple Chaos Emerald",
-          Type: "Item",
+          type: "Item",
           Passives: "All attacks to the enemy do 5 extra damage.",
           Active:
             "<br> <strong>Discord:</strong> Pick a target, that target will take 15 damage every round. Enemy teammates will take 3 damage every round passively. If all of the other 6 Chaos Emeralds are present and are being used by the holder of this card, all enemies take 20 damage per round and their heals are only 75% as effective.",
         },
         {
           name: "Pink Chaos Emerald",
-          Type: "Item",
+          type: "Item",
           Active:
             "Passively heals the holder of this card by 20 every round and passively heals teammates by 5 every round. All other heals in the battle have 20% more effectiveness and all heals outside of battle are 100% more effective.",
         },
         {
           name: "Green Chaos Emerald",
-          Type: "Item",
+          type: "Item",
           Active:
             "If the holder of this card has Chaos Harness (skillset or passive on the card) and this card is equipped as an Item, they can use the following ability: <br> <strong>Chaos Control:</strong> Teleport behind one selected enemy and deal 45 ATK. The DEF of the target will only have half of it's effectiveness.",
         },
         {
           name: "Yellow Chaos Emerald",
-          Type: "Item",
+          type: "Item",
           Passives: "+4 ENG",
           Active:
             "<br> <strong>Zeus:</strong> Call the god of thunder to smite a target enemy. It stuns Mechanical archetypes for two rounds, and sets nature archetypes on fire for 5 rounds dealing 5 damage each round. (-10 ENG, 6 Round Cooldown)",
         },
         {
           name: "White Chaos Emerald",
-          Type: "Item",
+          type: "Item",
           Passives: "+5 DEF",
           Active:
             "<br> <strong>Push:</strong> Telekinetically throw an enemy, dealing 30 damage, stunning the enemy for one round (unless they just got out of stun the previous round) and lowering their DEX by 3 for 3 rounds. (-5 ENG, 6 Round Cooldown)",
         },
         {
           name: "Jim's Soul",
-          Type: "Item",
+          type: "Item",
           Ability:
             "<br> <strong>Consume:</strong> Copy any card (incl. Character types) by sacrificing a character you own.",
         },
         {
           name: "Bicycle Playing Cards",
-          Type: "Item",
+          type: "Item",
           Ability:
             " Draw 5 cards from a deck of playing cards; If an Ace is drawn, you get +1 ENG along with other buffs you might get. <br> <strong>Pair:</strong> +2 DEX (stackable with a pair of a pair), <br> <strong>3-Pair':</strong> +13 DEF, <br> <strong>4-of-a-kind:</strong> +20 MaxHP, <br> <strong>Straight:</strong> +15 MaxHP and +15 BaseATK, <br> <strong>Royal Straight:</strong> +5 DEX and +15 DEF, <br> <strong>Royal Flush:</strong> All stats multiplied by 3. An Ace of Spades grants you a second life starting at 75HP and passively heal 10 HP every round until you reach 150 HP or MaxHP (whatever comes first). You can play another hand for your ally. Can redraw every 2 rounds. (-1 ENG, 2 round cooldown)",
         }, //you seen em, you play em. And if'n I don't?
         {
           name: "Pocket Candy",
-          Type: "Item",
+          type: "Item",
           Ability:
             "(all are one time use) <br> <strong>Red Jolly Rancher:</strong> Heal 20 HP. <br> <strong>Purple Jolly Rancher:</strong> +1 DEX. <br> <strong>Green Jolly Rancher:</strong> +5 DEF. <br> <strong>Blue Jolly Rancher:</strong> +10 HP, +8 ENG. <br> <strong>Mint Lifesaver:</strong> -10% Miss Chance. <br> <strong>Candy Lifesaver:</strong> +10% Dodge Chance. (Lifesaver effects wear off in 5 rounds) <br> <strong>2 starbursts:</strong> Deal 20 ATK for each one used and stun enemy for 1 or 2 rounds. <br> <strong>Pop Rocks:</strong> Deal 5*d20 (roll d20) damage, if more than 80 damage is dealt to the target they're stunned for 1 round.",
         }, //there's more in the van
         {
           name: "UH-1 Huey Medevac",
-          Type: "Item",
+          type: "Item",
           Ability:
             "<br> <strong>Escape:</strong> When used, it will take 3 rounds for a helicopter to arrive and two rounds for characters to board and leave respectively. (-1 ENG, 20 round cooldown, 3 uses before discard). During those 2 rounds, characters boarding can only be attacked in the first round and cannot attack back, and in the second round the helicopter can be destroyed by Tails' Throw Partner move, Sonic's BaseATK (50% chance to miss), FIM-92 Stinger (20% miss chance), Kamikaze Drone (20% miss chance), and/or a Super Character with the 7 Chaos Emeralds (0% miss chance). Upon successful escape, all characters are healed to full HP and if a character died while boarding they are revived with 50% health.",
         },
         {
           name: "Chaos Harness",
-          Type: "Skillset",
+          type: "Skillset",
           Passives:
             "All Chaos Emeralds individually have 10% greater effectiveness.",
           Active:
@@ -426,26 +427,26 @@
         },
         {
           name: "Jim's Talent",
-          Type: "Skillset",
+          type: "Skillset",
           Passives:
             "Buff all stats by 50 with a 10% chance to explode and die instantly every turn.",
         }, //who the fuck is Jim anyway?
         {
           name: "Jim's Reckoning",
-          Type: "Event",
+          type: "Event",
           Ability:
             "<br> <strong>Are you ready to have a bad time?:</strong> Everything in a 5inch^2 area on the map is instantly burned (take 5 damage each round for 5 rounds), poisoned (15 damage each round for 3 rounds), and a randomly selected character is reduced to 5 HP. Discard after card is used. (-5 ENG to everyone effected.)",
         },
         {
           name: "Nuclear War",
-          Type: "Event",
+          type: "Event",
           Ability:
             "<br> <strong>Initial Blast:</strong> Any character card in any POI is immediately reduced to 80 HP. If they were under 51 HP, they die (does not effect ghosts or abstract spirits) <br> <strong>Radiation sickness:</strong> Applied to any cards that were in a POI and lived: <br> -1%HP per round for 15 rounds after they leave the POI <br> +10% chance to miss attacks (effects all archetypes)",
         }, //war, war never changes
         {
           name: "Kolossos",
-          Type: "Event",
-          SubType: "Boss",
+          type: "Event",
+          Subtype: "Boss",
           HP: "Undefined",
           ATK: "150 (33% hit chance, 33% near miss chance, 33% miss chance)",
           DEF: "Undefined",
@@ -457,6 +458,10 @@
             "<br><strong>Ability1 Charge:</strong> When used, Kolossos will charge towards a target and have a 50% chance to spike them, dealing 40 damage, then they can pick another target and have half the chance to hit that target (25%), he can pick as many targets as he wants untill he misses one, but he has 2 rounds of charge to hit at-least and person. Once he misses someone, he will slam everyone he spiked on his arm into the wall, dealing an additional 20 damage. However, once he does this, he has a DEX of 4 for one round and is 100% more suseoticle to stun (meaning stuns can be applied with just 50 for one round, but two rounds is still 150, and 3 rounds is still 250, etc.<br><strong>Ability2 Taunt:</strong> Kolossos will select one person to Taunt, which will give that person a trance state(-20% dodge chance)<br><strong>Ability3 Grab:</strong> If Kolossos has been hit by a melee attack in the previous turn and/or round, he can grab the person who dealt it (unless they have a DEX of 18 or higher) and deal 40 damage to them.",
           Extra:
             "<br><strong>Last Man Standing:</strong> Unless the chance to escape has already been given, the amount of rounds needed to survive is set to 6 before escape is possible. The character's defense is set to double BaseDEF plus whatever buffs from the card's passives x 1.2 and items. their cooldowns are shortened to 33%, and they have 3x energy that recharges 3 times as fast. And additionally, at the start of LMS, the last man stadning in question will be healed to full +65% of their HP as overcharge (their HP before LMS started, not their MaxHP Kolossos hit chance is 50% and hear miss is also 50%.) <br><strong>To truly defeat Kolossos:</strong> A character would need all seven Chaos Emeralds, which will allow them to deal undefined DMG to Kolossos, which you need to do 5 times before Kolossos dies. The character does not need to be in super form, they simply need the Chaos Emeralds, however, if they aren't in super, it is very likely that they die in their endeavor. <br><br><strong>Controlled by Game Master.</strong>",
+        },
+        {
+          name: "test",
+          type: "Art",
         },
       ];
       //Brayden, please for the love of god keep Kolossos at the way bottom so we don't have a void in the middle of the website, thank you. -Leland
@@ -470,27 +475,26 @@
         const showItem = document.getElementById("item").checked;
         const showSkillset = document.getElementById("skillset").checked;
         const showEvent = document.getElementById("event").checked;
+        const showArt = document.getElementById("art").checked;
         const matches = cards.filter((card) => {
           const matchesQuery = card.name.toLowerCase().includes(query);
-          const matchesType =
-            (card.Type === "Character" && showCharacter) ||
-            (card.Type === "Item" && showItem) ||
-            (card.Type === "Skillset" && showSkillset) ||
-            (card.Type === "Event" && showEvent);
-          return matchesQuery && matchesType;
+          const matchestype =
+            (card.type === "Character" && showCharacter) ||
+            (card.type === "Item" && showItem) ||
+            (card.type === "Skillset" && showSkillset) ||
+            (card.type === "Event" && showEvent) ||
+            (card.type === "Art" && showArt);
+          return matchesQuery && matchestype;
         });
         displayResults(matches);
       }
 
       document.getElementById("search").addEventListener("input", filterCards);
-      document
-        .getElementById("character")
-        .addEventListener("change", filterCards);
+      document.getElementById("character").addEventListener("change", filterCards);
       document.getElementById("item").addEventListener("change", filterCards);
-      document
-        .getElementById("skillset")
-        .addEventListener("change", filterCards);
+      document.getElementById("skillset").addEventListener("change", filterCards);
       document.getElementById("event").addEventListener("change", filterCards);
+      document.getElementById("art").addEventListener("change", filterCards);
 
       // -----------------------------
       // DISPLAY RESULTS
@@ -503,8 +507,8 @@
             return `
        <div class="card" onclick="openModal(this)">
            <h2>${card.name}</h2>
-           ${card.Type !== undefined ? `<p><strong>Type:</strong> ${card.Type}</p>` : ""}
-           ${card.SubType !== undefined ? `<p><strong>SubType:</strong> ${card.SubType}</p>` : ""}
+           ${card.type !== undefined ? `<p><strong>Type:</strong> ${card.type}</p>` : ""}
+           ${card.Subtype !== undefined ? `<p><strong>Subtype:</strong> ${card.Subtype}</p>` : ""}
            ${card.Archetype !== undefined ? `<p><strong>Archetype:</strong> ${card.Archetype}</p>` : ""}
            ${card.HP !== undefined ? `<p><strong>HP:</strong> ${card.HP}</p>` : ""}
            ${card.ATK !== undefined ? `<p><strong>ATK:</strong> ${card.ATK}</p>` : ""}
