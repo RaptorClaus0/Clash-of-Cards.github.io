@@ -462,6 +462,8 @@
         {
           name: "test",
           type: "Art",
+          Image: "<img src=;'/Clash of cards/Screenshot 2026-02-25 14.35.51.webp' alt='Womp Womp, its not working.'>"
+
         },
       ];
       //Brayden, please for the love of god keep Kolossos at the way bottom so we don't have a void in the middle of the website, thank you. -Leland
@@ -519,6 +521,7 @@
            ${card.Ability !== undefined ? `<p><strong>Ability:</strong> ${card.Ability}</p>` : ""}
            ${card.Active !== undefined ? `<p><strong>Active:</strong> ${card.Active}</p>` : ""}
            ${card.Extra !== undefined ? `<p><strong>Extra:</strong> ${card.Extra}</p>` : ""}
+           ${card.Image !== undefined ? `<p><strong>Image:</strong> ${card.Image}</p>` : ""}
        </div>
    `;
           })
