@@ -462,7 +462,7 @@
         {
           name: "test",
           type: "Art",
-          Image: "<img src=;'https://www.freeiconspng.com/thumbs/rain-png/rain-png-transparent-9.png' alt='Womp Womp, its not working.'>"
+          image: "Screenshot 2026-02-25 14.35.51.webp"
 
         },
       ];
@@ -501,32 +501,39 @@
       // -----------------------------
       // DISPLAY RESULTS
       // -----------------------------
-      function displayResults(cards) {
-        const container = document.getElementById("results");
+   function displayResults(cards) {
+       const container = document.getElementById("results");
 
-        container.innerHTML = cards
-          .map((card) => {
-            return `
-       <div class="card" onclick="openModal(this)">
-           <h2>${card.name}</h2>
-           ${card.type !== undefined ? `<p><strong>Type:</strong> ${card.type}</p>` : ""}
-           ${card.Subtype !== undefined ? `<p><strong>Subtype:</strong> ${card.Subtype}</p>` : ""}
-           ${card.Archetype !== undefined ? `<p><strong>Archetype:</strong> ${card.Archetype}</p>` : ""}
-           ${card.HP !== undefined ? `<p><strong>HP:</strong> ${card.HP}</p>` : ""}
-           ${card.ATK !== undefined ? `<p><strong>ATK:</strong> ${card.ATK}</p>` : ""}
-           ${card.DEF !== undefined ? `<p><strong>DEF:</strong> ${card.DEF}</p>` : ""}
-           ${card.DEX !== undefined ? `<p><strong>DEX:</strong> ${card.DEX}</p>` : ""}
-           ${card.ENG !== undefined ? `<p><strong>ENG:</strong> ${card.ENG}</p>` : ""}
-           ${card.Passives !== undefined ? `<p><strong>Passives:</strong> ${card.Passives}</p>` : ""}
-           ${card.Ability !== undefined ? `<p><strong>Ability:</strong> ${card.Ability}</p>` : ""}
-           ${card.Active !== undefined ? `<p><strong>Active:</strong> ${card.Active}</p>` : ""}
-           ${card.Extra !== undefined ? `<p><strong>Extra:</strong> ${card.Extra}</p>` : ""}
-           ${card.Image !== undefined ? `<p><strong>Image:</strong> ${card.Image}</p>` : ""}
-       </div>
-   `;
-          })
-          .join("");
-      }
+       container.innerHTML = cards.map(card => {
+           let content = "";
+           
+           if (card.image) {
+               content = `<img src="${card.image}" alt="Womp Womp, you cant load this." style="width:100%; border-radius:8px; margin-top:10px;">`;
+           } else {
+               content = `
+                   ${card.Type ? `<p><strong>Type:</strong> ${card.Type}</p>` : ""}
+                   ${card.SubType ? `<p><strong>SubType:</strong> ${card.SubType}</p>` : ""}
+                   ${card.Archetype ? `<p><strong>Archetype:</strong> ${card.Archetype}</p>` : ""}
+                   ${card.HP ? `<p><strong>HP:</strong> ${card.HP}</p>` : ""}
+                   ${card.ATK ? `<p><strong>ATK:</strong> ${card.ATK}</p>` : ""}
+                   ${card.DEF ? `<p><strong>DEF:</strong> ${card.DEF}</p>` : ""}
+                   ${card.DEX ? `<p><strong>DEX:</strong> ${card.DEX}</p>` : ""}
+                   ${card.ENG ? `<p><strong>ENG:</strong> ${card.ENG}</p>` : ""}
+                   ${card.Passives ? `<p><strong>Passives:</strong> ${card.Passives}</p>` : ""}
+                   ${card.Ability ? `<p><strong>Ability:</strong> ${card.Ability}</p>` : ""}
+                   ${card.Active ? `<p><strong>Active:</strong> ${card.Active}</p>` : ""}
+                   ${card.Extra ? `<p><strong>Extra:</strong> ${card.Extra}</p>` : ""}
+               `;
+           }
+
+           return `
+               <div class="card" onclick="openModal(this)">
+                   <h2>${card.name}</h2>
+                   ${content}
+               </div>
+           `;
+       }).join("");
+   }
 
       // -----------------------------
       // MODAL LOGIC
