@@ -1,451 +1,506 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>Clash of Cards</title>
-  <style>
-    /* --- YOUR ORIGINAL STYLES --- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <head>
+    <title>Clash of Cards</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #1a1a2e 0%, #3e1616 100%);
-      color: #e0e0e0;
-      padding: 20px;
-      min-height: 100vh;
-    }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1a1a2e 0%, #3e1616 100%);
+        color: #e0e0e0;
+        padding: 20px;
+        min-height: 100vh;
+      }
 
-    h1 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-      color: #00d4ff;
-      text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-    }
+      h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        color: #00d4ff;
+        text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+      }
 
-    h2 {
-      font-size: 1.3rem;
-      margin-top: 25px;
-      margin-bottom: 15px;
-      color: #00d4ff;
-    }
+      h2 {
+        font-size: 1.3rem;
+        margin-top: 25px;
+        margin-bottom: 15px;
+        color: #00d4ff;
+      }
 
-    #search {
-      width: 100%;
-      max-width: 400px;
-      padding: 12px 15px;
-      font-size: 16px;
-      border: 2px solid #00d4ff;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      color: #e0e0e0;
-      transition: all 0.3s ease;
-      margin-bottom: 20px;
-    }
+      #search {
+        width: 100%;
+        max-width: 400px;
+        padding: 12px 15px;
+        font-size: 16px;
+        border: 2px solid #00d4ff;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #e0e0e0;
+        transition: all 0.3s ease;
+        margin-bottom: 20px;
+      }
 
-    .filter-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-bottom: 25px;
-      padding: 15px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
-      border-left: 4px solid #00d4ff;
-    }
+      .filter-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 25px;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border-left: 4px solid #00d4ff;
+      }
 
-    label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-    }
+      label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+      }
 
-    #results {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
+      #results {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+      }
 
-    .card {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-      border: 2px solid #00d4ff;
-      border-radius: 12px;
-      padding: 20px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      cursor: zoom-in; /* Let users know they can click */
-    }
+      .card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.05) 0%,
+          rgba(255, 255, 255, 0.02) 100%
+        );
+        border: 2px solid #00d4ff;
+        border-radius: 12px;
+        padding: 20px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        cursor: zoom-in;
+      }
 
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: #00ffff;
-      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
-    }
+      .card:hover {
+        transform: translateY(-8px);
+        border-color: #00ffff;
+        box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
+      }
 
-    .card h2 {
-      margin: 0 0 15px 0;
-      font-size: 1.5rem;
-      color: #00ffff;
-      border-bottom: 2px solid #00d4ff;
-      padding-bottom: 10px;
-    }
+      .card h2 {
+        margin: 0 0 15px 0;
+        font-size: 1.5rem;
+        color: #00ffff;
+        border-bottom: 2px solid #00d4ff;
+        padding-bottom: 10px;
+      }
 
-    .card p {
-      margin: 10px 0;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
+      .card p {
+        margin: 10px 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
 
-    .card strong {
-      color: #00d4ff;
-    }
+      .card strong {
+        color: #00d4ff;
+      }
 
-    /* --- EXPANSION MODAL STYLES --- */
-    #card-modal {
-      display: none; /* Hidden by default */
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      backdrop-filter: blur(5px);
-      z-index: 9999;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      cursor: zoom-out;
-    }
+      #card-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(5px);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        cursor: zoom-out;
+      }
 
-    /* The version of the card inside the modal */
-    #modal-content-wrapper .card {
-      width: 100%;
-      max-width: 100%; /* Bigger on screen */
-      max-height: 100%;
-      overflow-y: auto; /* Scroll if text is huge */
-      border: 3px solid #00ffff;
-      cursor: default;
-      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
+      #modal-content-wrapper .card {
+        width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        background-color: rgba(26, 26, 46, 0.4);
+        overflow-y: auto;
+        border: 3px solid #00ffff;
+        cursor: default;
+        animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
 
-    @keyframes popIn {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
+      @keyframes popIn {
+        from {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
 
-    .close-hint {
-      position: absolute;
-      top: 20px;
-      color: #00d4ff;
-      font-weight: bold;
-      pointer-events: none;
-    }
+      .close-hint {
+        position: absolute;
+        top: 20px;
+        color: #00d4ff;
+        font-weight: bold;
+        pointer-events: none;
+      }
 
-    /* Scrollbar for large cards */
-    .card::-webkit-scrollbar { width: 6px; }
-    .card::-webkit-scrollbar-thumb { background: #00d4ff; border-radius: 10px; }
-
-  </style>
-</head>
-<body>
+      .card::-webkit-scrollbar {
+        width: 6px;
+      }
+      .card::-webkit-scrollbar-thumb {
+        background: #00d4ff;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
     <h1>Clash of Cards</h1>
 
     <h2>Card Search</h2>
-    <input id="search" type="text" placeholder="Search for a card">
-    
+    <input id="search" type="text" placeholder="Search for a card" />
+
     <div class="filter-container">
-      <label><input type="checkbox" id="character" checked> Characters</label>
-      <label><input type="checkbox" id="item" checked> Items</label>
-      <label><input type="checkbox" id="skillset" checked> Skillsets</label>
-      <label><input type="checkbox" id="event" checked> Events</label>
+      <label><input type="checkbox" id="character" checked /> Characters</label>
+      <label><input type="checkbox" id="item" checked /> Items</label>
+      <label><input type="checkbox" id="skillset" checked /> Skillsets</label>
+      <label><input type="checkbox" id="event" checked /> Events</label>
     </div>
 
     <div id="results"></div>
 
     <div id="card-modal" onclick="closeModal()">
-        <div class="close-hint">Click anywhere to close</div>
-        <div id="modal-content-wrapper" onclick="event.stopPropagation()">
-            </div>
+      <div class="close-hint">Click anywhere to close</div>
+      <div id="modal-content-wrapper" onclick="event.stopPropagation()"></div>
     </div>
 
-<script>
-   const cards = [
-     // ... (Your card data stays exactly the same) ...
-     {
-       "name": "Mil Mi-24 Attack Helicopter + Pilot",
-       "Type": "Character",
-       "Archetype": "Mechanical",
-       "HP": 300,
-       "ATK": 60,
-       "DEF": 20,
-       "DEX": 22,
-       "ENG": "30 Rounds (Recharge on land)",
-       "Ability": "<br> <strong>Rocket Run:</strong> Deal 40 +/-20 damage for every rocket pod you use (up to 4 before needing to land to refill) in explosive damage. <br> <strong>Escort:</strong> Can escort up to 8 characters at once (not including this one) but if this card is attacked then all other character's in the helicopter also receive the same amount of damage. Must be on land to board/exit unless Tails the Fox or another flying entity is boarding/exiting."
-     },//POV: 80 S-8 Rockets direct impacting a hedgehog.
-     {
-       "name": "Tails the Fox",
-       "Type": "Character",
-       "Archetype": "Nature",
-       "HP": 175,
-       "ATK": 40,
-       "DEF": 15,
-       "DEX": 18,
-       "ENG": 8,
-       "Passives": "<br> <strong>1:</strong> Can carry Nature Archetype character over water for 1 round. <br> <strong>2:</strong> All Heals on Mechanical Archetypes are 1.5x as effective.",
-       "Ability": "<br> <strong>Mecha Healer:</strong> Tails can heal a Mechanical Archetype character for 3% of their HP. (-2 ENG, 4 Round Cooldown.) <br> <strong>Throw Partner:</strong> Tails will grab the selected teammate, and throw them at the enemy, dealing ATK*1.25. (-3 ENG, 5 Round Cooldown. It's the teammates ATK, not tail's.)"
-     },
-     {
-       "name": "Blaze the Cat",
-       "Type": "Character",
-       "Archetype": "Nature",
-       "HP": 160,
-       "ATK": 65,
-       "DEF": 15,
-       "DEX": 25,
-       "ENG": 10,
-       "Passives": "All allies gain 5 DEF, and for every Ally in her squad, she'll gain 10 DEF for herself.",
-       "Ability": "<br> <strong>Sol Accumulation:</strong> For any item action that occurs in Blaze's squad, she'll gain a token that increases her ATK by 5, and it stacks. Tokens can be traded in for 1 ENG each."
-     },//Don't tell me you wouldn't if you had the chance
-     {
-       "name": "Silver the Hedgehog",
-       "Type": "Character",
-       "Archetype": "Nature",
-       "HP": 200,
-       "ATK": 45,
-       "DEF": 15,
-       "DEX": 18,
-       "ENG": "15 (+2 ENG per round until full)",
-       "Passives": "Can fly over water tiles.",
-       "Ability": "<br> <strong>It's no use!:</strong> Paralyze an enemy for 3 ENG per round, and a maximum of 3 rounds straight. (-3 ENG per round, 4 round cooldown)<br> <strong>Unstun:</strong> Cure an ally's stun for 2 ENG.<br> <strong>Rock :) :</strong> Block an incoming attack by moving a heavy object in the way. Negates 90% of damage taken before DEF negation. (-3 ENG, 5 round cooldown)"
-     },
-     {
-       "name": "Sonic the Hedgehog",
-       "Type": "Character",
-       "Archetype": "Nature",
-       "HP": 240,
-       "ATK": 55,
-       "DEF": 18,
-       "DEX": 26,
-       "ENG": "6 (+2 per round)",
-       "Passives": "at 40 DEX, Sonic has a 95% dodge chance of any attacks.",
-       "Ability": "<br> <strong>Speed Build:</strong> For 1 extra energy per round, increase DEX by 1 with a limit of 4 (+1 DEX costs 1 ENG, +2 DEX costs 2 ENG...) and when the desired DEX is reached it only costs 1 ENG every other round to maintain it. Can start and stop this move at any point with 1 round cooldown each time it's used. Cannot be used past 30 DEX."
-     },
-     {
-       "name": "Jet the Hawk",
-       "Type": "Character",
-       "Archetype": "Nature",
-       "HP": 150,
-       "ATK": 50,
-       "DEF": 10,
-       "DEX": 18,
-       "ENG": 5,
-       "Passives": "Can fly over water with -2 DEX.",
-       "Ability": "<br> <strong>Gear Runover':</strong> Spend a round circling above a target enemy (Makes them dizzy, +20% chance to miss for 3 rounds) (while circling, this card has a 95% chance to dodge) then strike the opponent with Jet's hoverboard dealing 100 damage and stunning the target enemy for a round. (-3 ENG, 5 round cooldown)"
-     },
-     {
-       "name": "Honey the Cat",
-       "Type": "Character",
-       "Archetype": "Nature",
-       "HP": 230,
-       "ATK": 95,
-       "DEF": 15,
-       "DEX": 20,
-       "ENG": 8,
-       "Passives": "No fall damage 'Nimble'; +5% dodge chance",
-       "Ability": "<br> <strong>Defense Stance:</strong> Reallocate up to 50 from ATK to DEF and divide the remaining ATK by 2. This card is stun immune when in defense stance. Move is cancelled immediately without using an action if another special move, item or skillset is used by Honey. (-0 ENG, 2 round cooldown) <br> <strong>Honey Glider / Pounce:</strong> Deal 70 ATK to a target opponent (not negated by DEF) and stun the opponent for a round, however, you will take on all of the opponents effects. (-4 ENG, 3 round cooldown)"
-     },
-     {
-       "name": "Shadow the Hedgehog",
-       "Type": "Character",
-       "Archetype": "Nature",
-       "HP": 250,
-       "ATK": 60,
-       "DEF": 20,
-       "DEX": 20,
-       "ENG": 10,
-       "Passives": "Can match Sonic's DEX if he's a teammate (capped at 36 DEX) All of Shadow's attacks against government employees are 33% more effective.",
-       "Ability": "<br> <strong>Chaos Control:</strong> Teleport behind two selected enemies and deal 50 ATK to both of them (not negated by DEF). <br> <strong>Chaos Blast:</strong> Charge up for one round (Shadow is invulnerable in this one round) and then deal the amount of damage that Shadow has taken back to all enemies (divide the damage equally between the enemies)."
-     },//ALL HAIL SHADOW!!! Also has combat related PTSD from when he was direct impacted by 80 S-8 unguided rockets from an Mi-24 Attack Helicopter.
-     {
-       "name": "Nicole Watterson",
-       "Type": "Character",
-       "Archetype": "Nature",
-       "HP": 240,
-       "ATK": 80,
-       "DEF": 16,
-       "DEX": 16,
-       "ENG": 16,
-       "Passives": "<strong>Chaos:</strong> Every three rounds, the MaxHP and BaseATK of all friends and foes in the battle is changed by +/-20."
-     },
-     {
-       "name": "Family Guy 3",
-       "Type": "Character",
-       "Archetype": "Nature",
-       "HP": 200,
-       "ATK": "45 (+/- 10)",
-       "DEF": "20 (+/- 3)",
-       "DEX": 5,
-       "ENG": "maximum of 5, start at 3.",
-       "Ability": "<br> <strong>say:</strong> Bird, bird, buh-birds the word ah well the bird bird bird well the bird is the word.\" and stun a target enemy for 1 round or 3 rounds if it's a bird. (-3 ENG, 2 round cooldown)"
-     },
-     {
-       "name": "Shredded (Buff Shrek)",
-       "Type": "Character",
-       "Archetype": "Nature",
-       "HP": 240,
-       "ATK": 100,
-       "DEF": 20,
-       "DEX": 14,
-       "ENG": 8,
-       "Passives": "-20% damage taken from blunt attacks. Cannot ride hovercraft or fit inside of small vehicles like the Бумер. +10% effectiveness against Mechanical archetype enemies.",
-       "Ability": "<br><strong>Steely Abs:</strong> Take only 30 damage from the next attack this card receives but also only deal 60 damage the following round and also first passive is halved when this move is active. (-3 ENG on activation, -1 ENG per round maintained, 5 round cooldown)"
-     },//I like 'em big, I like 'em chunky.
-     {
-       "name": "MONSTER ENERGY",
-       "Type": "Item",
-       "Passives": "None",
-       "Ability": "Gives the target character 80% more DEX for 10 rounds, but lowers their MaxHP by 10% until the end of the battle when it returns to normal (They don't heal back that HP, it's just that the MaxHP returns.) comes in a 6 pack. DEX multiplier is not stackable. Additionally, whatever team has this will go first in battle unless contradicted by an enemy card, then go by highest BaseDEX.",
-     },//It's green, so it's nature! Also holy shit it's expensive.
-     {
-        "name": "Engineer/Modder",
-        "Type": "Item",
-        "Passives": "All Mechanical Archetype cards in squad take 10 less damage from any attack, and heal 1.5x as effectively.",
-        "Ability": "<br> <strong>Technology:</strong> When this effect is applied to a Mechanical Archetype character, there's a 5% chance that any damage it takes will be multipled by 0.5x (-1 ENG per round, 5 round cooldown after). <br> <strong>Mechanic:</strong> On any ally, buff one random stat by 10% (3 used, no Cooldown, -1 ENG. Can only be used on Mechanical Archetype cards.)"
-     },//The engineer is engiNEARING MY FUCKING LIMIT!
-     {
-       "name": "Red Chaos Emerald",
-       "Type": "Item",
-       "Passives": "+2 ENG per round (until full ENG is reached). -1 Cooldown length",
-       "Active": "<br> <strong>Flames of Disaster:</strong> Double BaseATK, any enemy hit with this attack is set on fire taking 7 damage for 5 rounds. When this move is activated, it cannot be deactivated for 3 rounds. Additionally, there's a 15% chance to miss melee attacks and 20% chance to miss ranged attacks. (-1 ENG per round maintained, 5 round cooldown)"
-     },
-     {
-       "name": "Blue Chaos Emerald",
-       "Type": "Item",
-       "Passives": "+3 DEX",
-       "Active": "Mechanical Archetypes can equip this item for an additional +4 ENG. All cooldowns are one round faster (does NOT change charge times)"
-     },
-     {
-       "name": "Purple Chaos Emerald",
-       "Type": "Item",
-       "Passives": "All attacks to the enemy do 5 extra damage.",
-       "Active": "<br> <strong>Discord:</strong> Pick a target, that target will take 15 damage every round. Enemy teammates will take 3 damage every round passively. If all of the other 6 Chaos Emeralds are present and are being used by the holder of this card, all enemies take 20 damage per round and their heals are only 75% as effective."
-     },
-     {
-       "name": "Pink Chaos Emerald",
-       "Type": "Item",
-       "Active": "Passively heals the holder of this card by 20 every round and passively heals teammates by 5 every round. All other heals in the battle have 20% more effectiveness and all heals outside of battle are 100% more effective."
-     },
-     {
-       "name": "Green Chaos Emerald",
-       "Type": "Item",
-       "Active": "If the holder of this card has Chaos Harness (skillset or passive on the card) and this card is equipped as an Item, they can use the following ability: <br> <strong>Chaos Control:</strong> Teleport behind one selected enemy and deal 45 ATK. The DEF of the target will only have half of it's effectiveness."
-     },
-     {
-       "name": "Yellow Chaos Emerald",
-       "Type": "Item",
-       "Passives": "+4 ENG",
-       "Active": "<br> <strong>Zeus:</strong> Call the god of thunder to smite a target enemy. It stuns Mechanical archetypes for two rounds, and sets nature archetypes on fire for 5 rounds dealing 5 damage each round. (-10 ENG, 6 Round Cooldown)"
-     },
-     {
-       "name": "White Chaos Emerald",
-       "Type": "Item",
-       "Passives": "+5 DEF",
-       "Active": "<br> <strong>Push:</strong> Telekinetically throw an enemy, dealing 30 damage, stunning the enemy for one round (unless they just got out of stun the previous round) and lowering their DEX by 3 for 3 rounds. (-5 ENG, 6 Round Cooldown)"
-     },
-     {
-       "name": "Jim's Soul",
-       "Type": "Item",
-       "Ability": "<br> <strong>Consume:</strong> Copy any card (incl. Character types) by sacrificing a character you own."
-     },
-     {
-       "name": "Bicycle Playing Cards",
-       "Type": "Item",
-       "Ability": " Draw 5 cards from a deck of playing cards; If an Ace is drawn, you get +1 ENG along with other buffs you might get. <br> <strong>Pair:</strong> +2 DEX (stackable with a pair of a pair), <br> <strong>3-Pair':</strong> +13 DEF, <br> <strong>4-of-a-kind:</strong> +20 MaxHP, <br> <strong>Straight:</strong> +15 MaxHP and +15 BaseATK, <br> <strong>Royal Straight:</strong> +5 DEX and +15 DEF, <br> <strong>Royal Flush:</strong> All stats multiplied by 3. An Ace of Spades grants you a second life starting at 75HP and passively heal 10 HP every round until you reach 150 HP or MaxHP (whatever comes first). You can play another hand for your ally. Can redraw every 2 rounds. (-1 ENG, 2 round cooldown)"
-     },//you seen em, you play em. And if'n I don't?
-     {
-       "name": "Pocket Candy",
-       "Type": "Item",
-       "Ability": "(all are one time use) <br> <strong>Red Jolly Rancher:</strong> Heal 20 HP. <br> <strong>Purple Jolly Rancher:</strong> +1 DEX. <br> <strong>Green Jolly Rancher:</strong> +5 DEF. <br> <strong>Blue Jolly Rancher:</strong> +10 HP, +8 ENG. <br> <strong>Mint Lifesaver:</strong> -10% Miss Chance. <br> <strong>Candy Lifesaver:</strong> +10% Dodge Chance. (Lifesaver effects wear off in 5 rounds) <br> <strong>2 starbursts:</strong> Deal 20 ATK for each one used and stun enemy for 1 or 2 rounds. <br> <strong>Pop Rocks:</strong> Deal 5*d20 (roll d20) damage, if more than 80 damage is dealt to the target they're stunned for 1 round."
-     },//there's more in the van
-     {
-       "name": "UH-1 Huey Medevac",
-       "Type": "Item",
-       "Ability": "<br> <strong>Escape:</strong> When used, it will take 3 rounds for a helicopter to arrive and two rounds for characters to board and leave respectively. (-1 ENG, 20 round cooldown, 3 uses before discard). During those 2 rounds, characters boarding can only be attacked in the first round and cannot attack back, and in the second round the helicopter can be destroyed by Tails' Throw Partner move, Sonic's BaseATK (50% chance to miss), FIM-92 Stinger (20% miss chance), Kamikaze Drone (20% miss chance), and/or a Super Character with the 7 Chaos Emeralds (0% miss chance). Upon successful escape, all characters are healed to full HP and if a character died while boarding they are revived with 50% health."
-     },
-     {
-       "name": "Chaos Harness",
-       "Type": "Skillset",
-       "Passives": "All Chaos Emeralds individually have 10% greater effectiveness.",
-       "Active": "<br> <strong>Super:</strong> (requires all 7 Chaos Emeralds) upon activation, the character with all 7 emeralds will have their Maximum HP buffed to 4,500 and healed to full. They'll have infinite ENG. They'll also have 50% dodge chance and 60 DEX. Return to normal at the end of the battle. (30 Round Cooldown)"
-     },
-     {
-       "name": "Jim's Talent",
-       "Type": "Skillset",
-       "Passives": "Buff all stats by 50 with a 10% chance to explode and die instantly every turn."
-     },//who the fuck is Jim anyway?
-     {
-       "name": "Jim's Reckoning",
-       "Type": "Event",
-       "Ability": "<br> <strong>Are you ready to have a bad time?:</strong> Everything in a 5inch^2 area on the map is instantly burned (take 5 damage each round for 5 rounds), poisoned (15 damage each round for 3 rounds), and a randomly selected character is reduced to 5 HP. Discard after card is used. (-5 ENG to everyone effected.)"
-     },
-     {
-       "name": "Nuclear War",
-       "Type": "Event",
-       "Ability": "<br> <strong>Initial Blast:</strong> Any character card in any POI is immediately reduced to 80 HP. If they were under 51 HP, they die (does not effect ghosts or abstract spirits) <br> <strong>Radiation sickness:</strong> Applied to any cards that were in a POI and lived: <br> -1%HP per round for 15 rounds after they leave the POI <br> +10% chance to miss attacks (effects all archetypes)"
-     },//war, war never changes
-     {
-       "name": "Kolossos",
-       "Type": "Event",
-       "SubType": "Boss",
-       "HP": "Undefined",
-       "ATK": "150 (33% hit chance, 33% near miss chance, 33% miss chance)",
-       "DEF": "Undefined",
-       "DEX": "8 in battle, 40 after 5 rounds out of battle.",
-       "ENG": "Undefined",
-       "Passives": "<br><strong>Running Start:</strong> At the start of every battle, Ability one is immediately used with an 80% starting hit chance rather then 50%. <br><strong>Block:</strong> 25% Block chance when attacked: if he blocks, the attacking character is stunned for two rounds and will take 20% more damage from Kolossos until they are out of stun. <br><strong>Where are you going?:</strong> Nobody can escape battle with him until the battle has been going for 10 rounds. <br><strong>Fear:</strong> Characters going against Kolossos have 1 fear token at the start, and get another for every hit they take from Kolosssos, for every near-miss from Kolossos, and for every character that Kolossos kills. <br><strong>Get. up.</strong> If a character dies to this to this boss for the first time, they can be revived by a teammate up to 3 rounds after they were killed and when they are revied, they are set to 60% of the MaxHP. <br>(What is 'Fear'? for every fear token, the applied character has +1 DEX, -10 DEF, +/-5% BaseATK, and they have a +5% chance to miss. Their Special abilities have a 10% chance to miss unless they aren't offense.)",
-       "Ability": "<br><strong>Ability1 Charge:</strong> When used, Kolossos will charge towards a target and have a 50% chance to spike them, dealing 40 damage, then they can pick another target and have half the chance to hit that target (25%), he can pick as many targets as he wants untill he misses one, but he has 2 rounds of charge to hit at-least and person. Once he misses someone, he will slam everyone he spiked on his arm into the wall, dealing an additional 20 damage. However, once he does this, he has a DEX of 4 for one round and is 100% more suseoticle to stun (meaning stuns can be applied with just 50 for one round, but two rounds is still 150, and 3 rounds is still 250, etc.<br><strong>Ability2 Taunt:</strong> Kolossos will select one person to Taunt, which will give that person a trance state(-20% dodge chance)<br><strong>Ability3 Grab:</strong> If Kolossos has been hit by a melee attack in the previous turn and/or round, he can grab the person who dealt it (unless they have a DEX of 18 or higher) and deal 40 damage to them.",
-       "Extra": "<br><strong>Last Man Standing:</strong> Unless the chance to escape has already been given, the amount of rounds needed to survive is set to 6 before escape is possible. The character's defense is set to double BaseDEF plus whatever buffs from the card's passives x 1.2 and items. their cooldowns are shortened to 33%, and they have 3x energy that recharges 3 times as fast. And additionally, at the start of LMS, the last man stadning in question will be healed to full +65% of their HP as overcharge (their HP before LMS started, not their MaxHP Kolossos hit chance is 50% and hear miss is also 50%.) <br><strong>To truly defeat Kolossos:</strong> A character would need all seven Chaos Emeralds, which will allow them to deal undefined DMG to Kolossos, which you need to do 5 times before Kolossos dies. The character does not need to be in super form, they simply need the Chaos Emeralds, however, if they aren't in super, it is very likely that they die in their endeavor. <br><br><strong>Controlled by Game Master.</strong>"
-     }
-   ];
-//Brayden, please for the love of god keep Kolossos at the way bottom so we don't have a void in the middle of the website, thank you. -Leland
-   // -----------------------------
-   // SEARCH LOGIC
-   // -----------------------------
-   function filterCards() {
-     const query = document.getElementById("search").value.toLowerCase();
-     const showCharacter = document.getElementById("character").checked;
-     const showItem = document.getElementById("item").checked;
-     const showSkillset = document.getElementById("skillset").checked;
-     const showEvent = document.getElementById("event").checked;
-     const matches = cards.filter(card => {
-       const matchesQuery = card.name.toLowerCase().includes(query);
-       const matchesType = (card.Type === "Character" && showCharacter) ||
-                           (card.Type === "Item" && showItem) ||
-                           (card.Type === "Skillset" && showSkillset) ||
-                           (card.Type === "Event" && showEvent);
-       return matchesQuery && matchesType;
-     });
-     displayResults(matches);
-   }
+    <script>
+      const cards = [
+        {
+          name: "Mil Mi-24 Attack Helicopter + Pilot",
+          Type: "Character",
+          Archetype: "Mechanical",
+          HP: 300,
+          ATK: 60,
+          DEF: 20,
+          DEX: 22,
+          ENG: "30 Rounds (Recharge on land)",
+          Ability:
+            "<br> <strong>Rocket Run:</strong> Deal 40 +/-20 damage for every rocket pod you use (up to 4 before needing to land to refill) in explosive damage. <br> <strong>Escort:</strong> Can escort up to 8 characters at once (not including this one) but if this card is attacked then all other character's in the helicopter also receive the same amount of damage. Must be on land to board/exit unless Tails the Fox or another flying entity is boarding/exiting.",
+        }, //POV: 80 S-8 Rockets direct impacting a hedgehog.
+        {
+          name: "Tails the Fox",
+          Type: "Character",
+          Archetype: "Nature",
+          HP: 175,
+          ATK: 40,
+          DEF: 15,
+          DEX: 18,
+          ENG: 8,
+          Passives:
+            "<br> <strong>1:</strong> Can carry Nature Archetype character over water for 1 round. <br> <strong>2:</strong> All Heals on Mechanical Archetypes are 1.5x as effective.",
+          Ability:
+            "<br> <strong>Mecha Healer:</strong> Tails can heal a Mechanical Archetype character for 3% of their HP. (-2 ENG, 4 Round Cooldown.) <br> <strong>Throw Partner:</strong> Tails will grab the selected teammate, and throw them at the enemy, dealing ATK*1.25. (-3 ENG, 5 Round Cooldown. It's the teammates ATK, not tail's.)",
+        },
+        {
+          name: "Blaze the Cat",
+          Type: "Character",
+          Archetype: "Nature",
+          HP: 160,
+          ATK: 65,
+          DEF: 15,
+          DEX: 25,
+          ENG: 10,
+          Passives:
+            "All allies gain 5 DEF, and for every Ally in her squad, she'll gain 10 DEF for herself.",
+          Ability:
+            "<br> <strong>Sol Accumulation:</strong> For any item action that occurs in Blaze's squad, she'll gain a token that increases her ATK by 5, and it stacks. Tokens can be traded in for 1 ENG each.",
+        }, //Don't tell me you wouldn't if you had the chance
+        //I have a boyfriend. -Brayden
+        {
+          name: "Silver the Hedgehog",
+          Type: "Character",
+          Archetype: "Nature",
+          HP: 200,
+          ATK: 45,
+          DEF: 15,
+          DEX: 18,
+          ENG: "15 (+2 ENG per round until full)",
+          Passives: "Can fly over water tiles.",
+          Ability:
+            "<br> <strong>It's no use!:</strong> Paralyze an enemy for 3 ENG per round, and a maximum of 3 rounds straight. (-3 ENG per round, 4 round cooldown)<br> <strong>Unstun:</strong> Cure an ally's stun for 2 ENG.<br> <strong>Rock :) :</strong> Block an incoming attack by moving a heavy object in the way. Negates 90% of damage taken before DEF negation. (-3 ENG, 5 round cooldown)",
+        },
+        {
+          name: "Sonic the Hedgehog",
+          Type: "Character",
+          Archetype: "Nature",
+          HP: 240,
+          ATK: 55,
+          DEF: 18,
+          DEX: 26,
+          ENG: "6 (+2 per round)",
+          Passives: "at 40 DEX, Sonic has a 95% dodge chance of any attacks.",
+          Ability:
+            "<br> <strong>Speed Build:</strong> For 1 extra energy per round, increase DEX by 1 with a limit of 4 (+1 DEX costs 1 ENG, +2 DEX costs 2 ENG...) and when the desired DEX is reached it only costs 1 ENG every other round to maintain it. Can start and stop this move at any point with 1 round cooldown each time it's used. Cannot be used past 30 DEX.",
+        },
+        {
+          name: "Jet the Hawk",
+          Type: "Character",
+          Archetype: "Nature",
+          HP: 150,
+          ATK: 50,
+          DEF: 10,
+          DEX: 18,
+          ENG: 5,
+          Passives: "Can fly over water with -2 DEX.",
+          Ability:
+            "<br> <strong>Gear Runover':</strong> Spend a round circling above a target enemy (Makes them dizzy, +20% chance to miss for 3 rounds) (while circling, this card has a 95% chance to dodge) then strike the opponent with Jet's hoverboard dealing 100 damage and stunning the target enemy for a round. (-3 ENG, 5 round cooldown)",
+        },
+        {
+          name: "Honey the Cat",
+          Type: "Character",
+          Archetype: "Nature",
+          HP: 230,
+          ATK: 95,
+          DEF: 15,
+          DEX: 20,
+          ENG: 8,
+          Passives: "No fall damage 'Nimble'; +5% dodge chance",
+          Ability:
+            "<br> <strong>Defense Stance:</strong> Reallocate up to 50 from ATK to DEF and divide the remaining ATK by 2. This card is stun immune when in defense stance. Move is cancelled immediately without using an action if another special move, item or skillset is used by Honey. (-0 ENG, 2 round cooldown) <br> <strong>Honey Glider / Pounce:</strong> Deal 70 ATK to a target opponent (not negated by DEF) and stun the opponent for a round, however, you will take on all of the opponents effects. (-4 ENG, 3 round cooldown)",
+        },
+        {
+          name: "Shadow the Hedgehog",
+          Type: "Character",
+          Archetype: "Nature",
+          HP: 250,
+          ATK: 60,
+          DEF: 20,
+          DEX: 20,
+          ENG: 10,
+          Passives:
+            "Can match Sonic's DEX if he's a teammate (capped at 36 DEX) All of Shadow's attacks against government employees are 33% more effective.",
+          Ability:
+            "<br> <strong>Chaos Control:</strong> Teleport behind two selected enemies and deal 50 ATK to both of them (not negated by DEF). <br> <strong>Chaos Blast:</strong> Charge up for one round (Shadow is invulnerable in this one round) and then deal the amount of damage that Shadow has taken back to all enemies (divide the damage equally between the enemies).",
+        }, //ALL HAIL SHADOW!!! Also has combat related PTSD from when he was direct impacted by 80 S-8 unguided rockets from an Mi-24 Attack Helicopter.
+        {
+          name: "Nicole Watterson",
+          Type: "Character",
+          Archetype: "Nature",
+          HP: 240,
+          ATK: 80,
+          DEF: 16,
+          DEX: 16,
+          ENG: 16,
+          Passives:
+            "<strong>Chaos:</strong> Every three rounds, the MaxHP and BaseATK of all friends and foes in the battle is changed by +/-20.",
+        },
+        {
+          name: "Family Guy 3",
+          Type: "Character",
+          Archetype: "Nature",
+          HP: 200,
+          ATK: "45 (+/- 10)",
+          DEF: "20 (+/- 3)",
+          DEX: 5,
+          ENG: "maximum of 5, start at 3.",
+          Ability:
+            "<br> <strong>say:</strong> Bird, bird, buh-birds the word ah well the bird bird bird well the bird is the word.\" and stun a target enemy for 1 round or 3 rounds if it's a bird. (-3 ENG, 2 round cooldown)",
+        },
+        {
+          name: "Shredded (Buff Shrek)",
+          Type: "Character",
+          Archetype: "Nature",
+          HP: 240,
+          ATK: 100,
+          DEF: 20,
+          DEX: 14,
+          ENG: 8,
+          Passives:
+            "-20% damage taken from blunt attacks. Cannot ride hovercraft or fit inside of small vehicles like the Бумер. +10% effectiveness against Mechanical archetype enemies.",
+          Ability:
+            "<br><strong>Steely Abs:</strong> Take only 30 damage from the next attack this card receives but also only deal 60 damage the following round and also first passive is halved when this move is active. (-3 ENG on activation, -1 ENG per round maintained, 5 round cooldown)",
+        }, //I like 'em big, I like 'em chunky.
+        {
+          name: "MONSTER ENERGY",
+          Type: "Item",
+          Passives: "None",
+          Ability:
+            "Gives the target character 80% more DEX for 10 rounds, but lowers their MaxHP by 10% until the end of the battle when it returns to normal (They don't heal back that HP, it's just that the MaxHP returns.) comes in a 6 pack. DEX multiplier is not stackable. Additionally, whatever team has this will go first in battle unless contradicted by an enemy card, then go by highest BaseDEX.",
+        }, //It's green, so it's nature! Also holy shit it's expensive.
+        {
+          name: "Engineer/Modder",
+          Type: "Item",
+          Passives:
+            "All Mechanical Archetype cards in squad take 10 less damage from any attack, and heal 1.5x as effectively.",
+          Ability:
+            "<br> <strong>Technology:</strong> When this effect is applied to a Mechanical Archetype character, there's a 5% chance that any damage it takes will be multipled by 0.5x (-1 ENG per round, 5 round cooldown after). <br> <strong>Mechanic:</strong> On any ally, buff one random stat by 10% (3 used, no Cooldown, -1 ENG. Can only be used on Mechanical Archetype cards.)",
+        }, //The engineer is engiNEARING MY FUCKING LIMIT!
+        {
+          name: "Red Chaos Emerald",
+          Type: "Item",
+          Passives:
+            "+2 ENG per round (until full ENG is reached). -1 Cooldown length",
+          Active:
+            "<br> <strong>Flames of Disaster:</strong> Double BaseATK, any enemy hit with this attack is set on fire taking 7 damage for 5 rounds. When this move is activated, it cannot be deactivated for 3 rounds. Additionally, there's a 15% chance to miss melee attacks and 20% chance to miss ranged attacks. (-1 ENG per round maintained, 5 round cooldown)",
+        },
+        {
+          name: "Blue Chaos Emerald",
+          Type: "Item",
+          Passives: "+3 DEX",
+          Active:
+            "Mechanical Archetypes can equip this item for an additional +4 ENG. All cooldowns are one round faster (does NOT change charge times)",
+        },
+        {
+          name: "Purple Chaos Emerald",
+          Type: "Item",
+          Passives: "All attacks to the enemy do 5 extra damage.",
+          Active:
+            "<br> <strong>Discord:</strong> Pick a target, that target will take 15 damage every round. Enemy teammates will take 3 damage every round passively. If all of the other 6 Chaos Emeralds are present and are being used by the holder of this card, all enemies take 20 damage per round and their heals are only 75% as effective.",
+        },
+        {
+          name: "Pink Chaos Emerald",
+          Type: "Item",
+          Active:
+            "Passively heals the holder of this card by 20 every round and passively heals teammates by 5 every round. All other heals in the battle have 20% more effectiveness and all heals outside of battle are 100% more effective.",
+        },
+        {
+          name: "Green Chaos Emerald",
+          Type: "Item",
+          Active:
+            "If the holder of this card has Chaos Harness (skillset or passive on the card) and this card is equipped as an Item, they can use the following ability: <br> <strong>Chaos Control:</strong> Teleport behind one selected enemy and deal 45 ATK. The DEF of the target will only have half of it's effectiveness.",
+        },
+        {
+          name: "Yellow Chaos Emerald",
+          Type: "Item",
+          Passives: "+4 ENG",
+          Active:
+            "<br> <strong>Zeus:</strong> Call the god of thunder to smite a target enemy. It stuns Mechanical archetypes for two rounds, and sets nature archetypes on fire for 5 rounds dealing 5 damage each round. (-10 ENG, 6 Round Cooldown)",
+        },
+        {
+          name: "White Chaos Emerald",
+          Type: "Item",
+          Passives: "+5 DEF",
+          Active:
+            "<br> <strong>Push:</strong> Telekinetically throw an enemy, dealing 30 damage, stunning the enemy for one round (unless they just got out of stun the previous round) and lowering their DEX by 3 for 3 rounds. (-5 ENG, 6 Round Cooldown)",
+        },
+        {
+          name: "Jim's Soul",
+          Type: "Item",
+          Ability:
+            "<br> <strong>Consume:</strong> Copy any card (incl. Character types) by sacrificing a character you own.",
+        },
+        {
+          name: "Bicycle Playing Cards",
+          Type: "Item",
+          Ability:
+            " Draw 5 cards from a deck of playing cards; If an Ace is drawn, you get +1 ENG along with other buffs you might get. <br> <strong>Pair:</strong> +2 DEX (stackable with a pair of a pair), <br> <strong>3-Pair':</strong> +13 DEF, <br> <strong>4-of-a-kind:</strong> +20 MaxHP, <br> <strong>Straight:</strong> +15 MaxHP and +15 BaseATK, <br> <strong>Royal Straight:</strong> +5 DEX and +15 DEF, <br> <strong>Royal Flush:</strong> All stats multiplied by 3. An Ace of Spades grants you a second life starting at 75HP and passively heal 10 HP every round until you reach 150 HP or MaxHP (whatever comes first). You can play another hand for your ally. Can redraw every 2 rounds. (-1 ENG, 2 round cooldown)",
+        }, //you seen em, you play em. And if'n I don't?
+        {
+          name: "Pocket Candy",
+          Type: "Item",
+          Ability:
+            "(all are one time use) <br> <strong>Red Jolly Rancher:</strong> Heal 20 HP. <br> <strong>Purple Jolly Rancher:</strong> +1 DEX. <br> <strong>Green Jolly Rancher:</strong> +5 DEF. <br> <strong>Blue Jolly Rancher:</strong> +10 HP, +8 ENG. <br> <strong>Mint Lifesaver:</strong> -10% Miss Chance. <br> <strong>Candy Lifesaver:</strong> +10% Dodge Chance. (Lifesaver effects wear off in 5 rounds) <br> <strong>2 starbursts:</strong> Deal 20 ATK for each one used and stun enemy for 1 or 2 rounds. <br> <strong>Pop Rocks:</strong> Deal 5*d20 (roll d20) damage, if more than 80 damage is dealt to the target they're stunned for 1 round.",
+        }, //there's more in the van
+        {
+          name: "UH-1 Huey Medevac",
+          Type: "Item",
+          Ability:
+            "<br> <strong>Escape:</strong> When used, it will take 3 rounds for a helicopter to arrive and two rounds for characters to board and leave respectively. (-1 ENG, 20 round cooldown, 3 uses before discard). During those 2 rounds, characters boarding can only be attacked in the first round and cannot attack back, and in the second round the helicopter can be destroyed by Tails' Throw Partner move, Sonic's BaseATK (50% chance to miss), FIM-92 Stinger (20% miss chance), Kamikaze Drone (20% miss chance), and/or a Super Character with the 7 Chaos Emeralds (0% miss chance). Upon successful escape, all characters are healed to full HP and if a character died while boarding they are revived with 50% health.",
+        },
+        {
+          name: "Chaos Harness",
+          Type: "Skillset",
+          Passives:
+            "All Chaos Emeralds individually have 10% greater effectiveness.",
+          Active:
+            "<br> <strong>Super:</strong> (requires all 7 Chaos Emeralds) upon activation, the character with all 7 emeralds will have their Maximum HP buffed to 4,500 and healed to full. They'll have infinite ENG. They'll also have 50% dodge chance and 60 DEX. Return to normal at the end of the battle. (30 Round Cooldown)",
+        },
+        {
+          name: "Jim's Talent",
+          Type: "Skillset",
+          Passives:
+            "Buff all stats by 50 with a 10% chance to explode and die instantly every turn.",
+        }, //who the fuck is Jim anyway?
+        {
+          name: "Jim's Reckoning",
+          Type: "Event",
+          Ability:
+            "<br> <strong>Are you ready to have a bad time?:</strong> Everything in a 5inch^2 area on the map is instantly burned (take 5 damage each round for 5 rounds), poisoned (15 damage each round for 3 rounds), and a randomly selected character is reduced to 5 HP. Discard after card is used. (-5 ENG to everyone effected.)",
+        },
+        {
+          name: "Nuclear War",
+          Type: "Event",
+          Ability:
+            "<br> <strong>Initial Blast:</strong> Any character card in any POI is immediately reduced to 80 HP. If they were under 51 HP, they die (does not effect ghosts or abstract spirits) <br> <strong>Radiation sickness:</strong> Applied to any cards that were in a POI and lived: <br> -1%HP per round for 15 rounds after they leave the POI <br> +10% chance to miss attacks (effects all archetypes)",
+        }, //war, war never changes
+        {
+          name: "Kolossos",
+          Type: "Event",
+          SubType: "Boss",
+          HP: "Undefined",
+          ATK: "150 (33% hit chance, 33% near miss chance, 33% miss chance)",
+          DEF: "Undefined",
+          DEX: "8 in battle, 40 after 5 rounds out of battle.",
+          ENG: "Undefined",
+          Passives:
+            "<br><strong>Running Start:</strong> At the start of every battle, Ability one is immediately used with an 80% starting hit chance rather then 50%. <br><strong>Block:</strong> 25% Block chance when attacked: if he blocks, the attacking character is stunned for two rounds and will take 20% more damage from Kolossos until they are out of stun. <br><strong>Where are you going?:</strong> Nobody can escape battle with him until the battle has been going for 10 rounds. <br><strong>Fear:</strong> Characters going against Kolossos have 1 fear token at the start, and get another for every hit they take from Kolosssos, for every near-miss from Kolossos, and for every character that Kolossos kills. <br><strong>Get. up.</strong> If a character dies to this to this boss for the first time, they can be revived by a teammate up to 3 rounds after they were killed and when they are revied, they are set to 60% of the MaxHP. <br>(What is 'Fear'? for every fear token, the applied character has +1 DEX, -10 DEF, +/-5% BaseATK, and they have a +5% chance to miss. Their Special abilities have a 10% chance to miss unless they aren't offense.)",
+          Ability:
+            "<br><strong>Ability1 Charge:</strong> When used, Kolossos will charge towards a target and have a 50% chance to spike them, dealing 40 damage, then they can pick another target and have half the chance to hit that target (25%), he can pick as many targets as he wants untill he misses one, but he has 2 rounds of charge to hit at-least and person. Once he misses someone, he will slam everyone he spiked on his arm into the wall, dealing an additional 20 damage. However, once he does this, he has a DEX of 4 for one round and is 100% more suseoticle to stun (meaning stuns can be applied with just 50 for one round, but two rounds is still 150, and 3 rounds is still 250, etc.<br><strong>Ability2 Taunt:</strong> Kolossos will select one person to Taunt, which will give that person a trance state(-20% dodge chance)<br><strong>Ability3 Grab:</strong> If Kolossos has been hit by a melee attack in the previous turn and/or round, he can grab the person who dealt it (unless they have a DEX of 18 or higher) and deal 40 damage to them.",
+          Extra:
+            "<br><strong>Last Man Standing:</strong> Unless the chance to escape has already been given, the amount of rounds needed to survive is set to 6 before escape is possible. The character's defense is set to double BaseDEF plus whatever buffs from the card's passives x 1.2 and items. their cooldowns are shortened to 33%, and they have 3x energy that recharges 3 times as fast. And additionally, at the start of LMS, the last man stadning in question will be healed to full +65% of their HP as overcharge (their HP before LMS started, not their MaxHP Kolossos hit chance is 50% and hear miss is also 50%.) <br><strong>To truly defeat Kolossos:</strong> A character would need all seven Chaos Emeralds, which will allow them to deal undefined DMG to Kolossos, which you need to do 5 times before Kolossos dies. The character does not need to be in super form, they simply need the Chaos Emeralds, however, if they aren't in super, it is very likely that they die in their endeavor. <br><br><strong>Controlled by Game Master.</strong>",
+        },
+      ];
+      //Brayden, please for the love of god keep Kolossos at the way bottom so we don't have a void in the middle of the website, thank you. -Leland
+      //I'll fix it dont worry. -Brayden
+      // -----------------------------
+      // SEARCH LOGIC
+      // -----------------------------
+      function filterCards() {
+        const query = document.getElementById("search").value.toLowerCase();
+        const showCharacter = document.getElementById("character").checked;
+        const showItem = document.getElementById("item").checked;
+        const showSkillset = document.getElementById("skillset").checked;
+        const showEvent = document.getElementById("event").checked;
+        const matches = cards.filter((card) => {
+          const matchesQuery = card.name.toLowerCase().includes(query);
+          const matchesType =
+            (card.Type === "Character" && showCharacter) ||
+            (card.Type === "Item" && showItem) ||
+            (card.Type === "Skillset" && showSkillset) ||
+            (card.Type === "Event" && showEvent);
+          return matchesQuery && matchesType;
+        });
+        displayResults(matches);
+      }
 
-   document.getElementById("search").addEventListener("input", filterCards);
-   document.getElementById("character").addEventListener("change", filterCards);
-   document.getElementById("item").addEventListener("change", filterCards);
-   document.getElementById("skillset").addEventListener("change", filterCards);
-   document.getElementById("event").addEventListener("change", filterCards);
+      document.getElementById("search").addEventListener("input", filterCards);
+      document
+        .getElementById("character")
+        .addEventListener("change", filterCards);
+      document.getElementById("item").addEventListener("change", filterCards);
+      document
+        .getElementById("skillset")
+        .addEventListener("change", filterCards);
+      document.getElementById("event").addEventListener("change", filterCards);
 
-   // -----------------------------
-   // DISPLAY RESULTS (Updated with Expansion)
-   // -----------------------------
-   function displayResults(cards) {
-       const container = document.getElementById("results");
+      // -----------------------------
+      // DISPLAY RESULTS
+      // -----------------------------
+      function displayResults(cards) {
+        const container = document.getElementById("results");
 
-        container.innerHTML = cards.map(card => {
-       return `
+        container.innerHTML = cards
+          .map((card) => {
+            return `
        <div class="card" onclick="openModal(this)">
            <h2>${card.name}</h2>
            ${card.Type !== undefined ? `<p><strong>Type:</strong> ${card.Type}</p>` : ""}
@@ -462,41 +517,38 @@
            ${card.Extra !== undefined ? `<p><strong>Extra:</strong> ${card.Extra}</p>` : ""}
        </div>
    `;
-   }).join("");
-   }
+          })
+          .join("");
+      }
 
-   // -----------------------------
-   // MODAL LOGIC
-   // -----------------------------
-   function openModal(cardElement) {
-       const modal = document.getElementById('card-modal');
-       const wrapper = document.getElementById('modal-content-wrapper');
-       
-       // Clone the card so we don't move the original one
-       const clonedCard = cardElement.cloneNode(true);
-       
-       // Remove the click event from the clone so it doesn't try to "re-expand"
-       clonedCard.onclick = null;
-       
-       wrapper.innerHTML = ""; // Clear old content
-       wrapper.appendChild(clonedCard);
-       
-       modal.style.display = 'flex';
-       document.body.style.overflow = 'hidden'; // Stop background scrolling
-   }
+      // -----------------------------
+      // MODAL LOGIC
+      // -----------------------------
+      function openModal(cardElement) {
+        const modal = document.getElementById("card-modal");
+        const wrapper = document.getElementById("modal-content-wrapper");
 
-   function closeModal() {
-       document.getElementById('card-modal').style.display = 'none';
-       document.body.style.overflow = 'auto'; // Re-enable scrolling
-   }
+        const clonedCard = cardElement.cloneNode(true);
 
-   // Close with Escape key
-   window.addEventListener('keydown', (e) => {
-       if (e.key === "Escape") closeModal();
-   });
+        clonedCard.onclick = null;
 
-   // Initial display
-   filterCards();
- </script>
-</body>
+        wrapper.innerHTML = "";
+        wrapper.appendChild(clonedCard);
+
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        document.getElementById("card-modal").style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+
+      filterCards();
+    </script>
+  </body>
 </html>
