@@ -3,6 +3,7 @@
   <head>
     <title>Clash of Cards</title>
     <style>
+      /*I need to move all of this to a style.css at some point. its about 170 lines long (as of 2/26/26).*/
       * {
         margin: 0;
         padding: 0;
@@ -17,7 +18,6 @@
         min-height: 100vh;
       }
       
-
       h1 {
         text-align: center;
         font-size: 2.5rem;
@@ -65,17 +65,25 @@
       }
 
       #results {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 20px;
+        column-width: 320px; 
+        column-gap: 20px;
+        width: 100%;
         margin-top: 30px;
+        orphans: 1;
+        widows: 1;
       }
 
       .card {
+        break-inside: avoid-column; 
+        display: inline-block; 
+        width: 100%;
+        margin-bottom: 20px;
+
         background: linear-gradient(
           135deg,
-          rgba(255, 255, 255, 0.05) 0%,
-          rgba(255, 255, 255, 0.02) 100%
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(255, 255, 255, 0.02) 
+        100%
         );
         border: 2px solid #00d4ff;
         border-radius: 12px;
@@ -83,6 +91,10 @@
         transition: all 0.3s ease;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         cursor: zoom-in;
+      }
+
+      .card:first-child {
+        margin-top: 0;
       }
 
       .card:hover {
@@ -186,6 +198,9 @@
 
     <script>
       const cards = [
+      // -----------------------------
+      // Characters (Black)
+      // -----------------------------
         {
           name: "Mil Mi-24 Attack Helicopter + Pilot",
           type: "Character",
@@ -225,9 +240,11 @@
             "All allies gain 5 DEF, and for every Ally in her squad, she'll gain 10 DEF for herself.",
           Ability:
             "<br> <strong>Sol Accumulation:</strong> For any item action that occurs in Blaze's squad, she'll gain a token that increases her ATK by 5, and it stacks. Tokens can be traded in for 1 ENG each.",
-        }, //Don't tell me you wouldn't if you had the chance
-        //I have a boyfriend. -Brayden
-        //Oh damn, didn't think you swung all the way, I thought you were, like, both. Aight. -Leland
+        }, //Don't tell me you wouldn't if you had the chance -Leland
+           //I have a boyfriend. -Brayden
+           //Oh damn, didn't think you swung all the way, I thought you were, like, both. Aight. -Leland
+           //I am both, but I would rather be gay then date any female from our generation. -brayden
+           //Based af I just jork it to Blaze. -Leland
         {
           name: "Silver the Hedgehog",
           type: "Character",
@@ -294,6 +311,7 @@
           Ability:
             "<br> <strong>Chaos Control:</strong> Teleport behind two selected enemies and deal 50 ATK to both of them (not negated by DEF). <br> <strong>Chaos Blast:</strong> Charge up for one round (Shadow is invulnerable in this one round) and then deal the amount of damage that Shadow has taken back to all enemies (divide the damage equally between the enemies).",
         }, //ALL HAIL SHADOW!!! Also has combat related PTSD from when he was direct impacted by 80 S-8 unguided rockets from an Mi-24 Attack Helicopter.
+           //I may or may not be the reason for the PTSD -brayden
         {
           name: "Nicole Watterson",
           type: "Character",
@@ -332,6 +350,9 @@
           Ability:
             "<br><strong>Steely Abs:</strong> Take only 30 damage from the next attack this card receives but also only deal 60 damage the following round and also first passive is halved when this move is active. (-3 ENG on activation, -1 ENG per round maintained, 5 round cooldown)",
         }, //I like 'em big, I like 'em chunky.
+      // -----------------------------
+      // Items (Yellow)
+      // -----------------------------
         {
           name: "MONSTER ENERGY",
           type: "Item",
@@ -339,6 +360,7 @@
           Ability:
             "Gives the target character 80% more DEX for 10 rounds, but lowers their MaxHP by 10% until the end of the battle when it returns to normal (They don't heal back that HP, it's just that the MaxHP returns.) comes in a 6 pack. DEX multiplier is not stackable. Additionally, whatever team has this will go first in battle unless contradicted by an enemy card, then go by highest BaseDEX.",
         }, //It's green, so it's nature! Also holy shit it's expensive.
+           //ha you dont have money -brayden
         {
           name: "Engineer/Modder",
           type: "Item",
@@ -347,6 +369,7 @@
           Ability:
             "<br> <strong>Technology:</strong> When this effect is applied to a Mechanical Archetype character, there's a 5% chance that any damage it takes will be multipled by 0.5x (-1 ENG per round, 5 round cooldown after). <br> <strong>Mechanic:</strong> On any ally, buff one random stat by 10% (3 used, no Cooldown, -1 ENG. Can only be used on Mechanical Archetype cards.)",
         }, //The engineer is engiNEARING MY FUCKING LIMIT!
+           //engineer gaming -Brayden
         {
           name: "Red Chaos Emerald",
           type: "Item",
@@ -395,6 +418,7 @@
           Active:
             "<br> <strong>Push:</strong> Telekinetically throw an enemy, dealing 30 damage, stunning the enemy for one round (unless they just got out of stun the previous round) and lowering their DEX by 3 for 3 rounds. (-5 ENG, 6 Round Cooldown)",
         },//cumstone
+          //...ok -brayden
         {
           name: "Jim's Soul",
           type: "Item",
@@ -413,12 +437,17 @@
           Ability:
             "(all are one time use) <br> <strong>Red Jolly Rancher:</strong> Heal 20 HP. <br> <strong>Purple Jolly Rancher:</strong> +1 DEX. <br> <strong>Green Jolly Rancher:</strong> +5 DEF. <br> <strong>Blue Jolly Rancher:</strong> +10 HP, +8 ENG. <br> <strong>Mint Lifesaver:</strong> -10% Miss Chance. <br> <strong>Candy Lifesaver:</strong> +10% Dodge Chance. (Lifesaver effects wear off in 5 rounds) <br> <strong>2 starbursts:</strong> Deal 20 ATK for each one used and stun enemy for 1 or 2 rounds. <br> <strong>Pop Rocks:</strong> Deal 5*d20 (roll d20) damage, if more than 80 damage is dealt to the target they're stunned for 1 round.",
         }, //there's more in the van
+           //...ok (agian) -brayden
         {
           name: "UH-1 Huey Medevac",
           type: "Item",
           Ability:
             "<br> <strong>Escape:</strong> When used, it will take 3 rounds for a helicopter to arrive and two rounds for characters to board and leave respectively. (-1 ENG, 20 round cooldown, 3 uses before discard). During those 2 rounds, characters boarding can only be attacked in the first round and cannot attack back, and in the second round the helicopter can be destroyed by Tails' Throw Partner move, Sonic's BaseATK (50% chance to miss), FIM-92 Stinger (20% miss chance), Kamikaze Drone (20% miss chance), and/or a Super Character with the 7 Chaos Emeralds (0% miss chance). Upon successful escape, all characters are healed to full HP and if a character died while boarding they are revived with 50% health.",
         }, //SOME FOLKS INHERIT STAR SPANGLED EYES- OOH THEY'RE RED WHITE AND BLUE!
+           //WHAT THE FUCK IS A KILOMETER!!!!! *Eagle sound* -brayden
+      // -----------------------------
+      // Skillset (Blue)
+      // -----------------------------
         {
           name: "Chaos Harness",
           type: "Skillset",
@@ -433,6 +462,10 @@
           Passives:
             "Buff all stats by 50 with a 10% chance to explode and die instantly every turn.",
         }, //who the fuck is Jim anyway?
+           //idk -brayden
+      // -----------------------------
+      // Event (Red)
+      // -----------------------------
         {
           name: "Jim's Reckoning",
           type: "Event",
@@ -461,11 +494,22 @@
           Extra:
             "<br><strong>Last Man Standing:</strong> Unless the chance to escape has already been given, the amount of rounds needed to survive is set to 6 before escape is possible. The character's defense is set to double BaseDEF plus whatever buffs from the card's passives x 1.2 and items. their cooldowns are shortened to 33%, and they have 3x energy that recharges 3 times as fast. And additionally, at the start of LMS, the last man stadning in question will be healed to full +65% of their HP as overcharge (their HP before LMS started, not their MaxHP Kolossos hit chance is 50% and hear miss is also 50%.) <br><strong>To truly defeat Kolossos:</strong> A character would need all seven Chaos Emeralds, which will allow them to deal undefined DMG to Kolossos, which you need to do 5 times before Kolossos dies. The character does not need to be in super form, they simply need the Chaos Emeralds, however, if they aren't in super, it is very likely that they die in their endeavor. <br><br><strong>Controlled by Game Master.</strong>",
         },
+      // -----------------------------
+      // Art (Not Defined)
+      // -----------------------------
+
+        //==========================================================================\
+        //                                                                           \
+        //Make sure the link is a "//cdn.discordapp.com" not "//media.discordapp.net" |  
+        //           This was people can veiw it on a school chromebooks.             |
+        //                                                                           /
+        //==========================================================================/
+        //I did not need it make it look like that lol -brayden
         {
           name: "Rigby Blaze",
           type: "Art",
           image: "https://media.discordapp.net/attachments/1382433024968491160/1475653065355952158/IMG_5112.jpg?ex=69a0e783&is=699f9603&hm=8e2b9dcd422b169ce75d6474e1e969288e893d06d3768fb4b16419cc9d441e75&=&format=webp&width=632&height=668"
-//I have a lot of self control, but some things in this world. -Leland (Monster Energy Enjoyer for those who don't know me IRL btw)
+          //I have a lot of self control, but some things in this world. -Leland (Monster Energy Enjoyer for those who don't know me IRL btw)
         },
         {
           name: "Male 07 is pissed:",
@@ -499,7 +543,8 @@
       //
       //I think a way to fix it would be to rather than have a grid system that goes left to right top to bottom it's instead like x amount of columns and then those columns just have each card one after another going downward. Each one would be it's own separate column 
       //so like, for example with Kolossos being the height of 3 normal cards in the website rn, there'd be to the left of it 3 or 4 cards rather than 1 card and void. You picking up what I'm putting down?
-      //
+      // It works now - brayden
+
       // -----------------------------
       // SEARCH LOGIC
       // -----------------------------
@@ -542,6 +587,7 @@
            if (card.image) {
                content = `<img src="${card.image}" alt="Womp Womp, you cant load this." style="width:100%; border-radius:8px; margin-top:10px;">`;
            } else {//any way to limit the size it displays the image? If I have an image with 2K pixel resolution it fills the whole thing, but like, I don't really want that. -Leland
+                   //yes -brayden
                content = `
                    ${card.Type ? `<p><strong>Type:</strong> ${card.Type}</p>` : ""}
                    ${card.SubType ? `<p><strong>SubType:</strong> ${card.SubType}</p>` : ""}
