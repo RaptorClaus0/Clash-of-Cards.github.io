@@ -12,7 +12,7 @@
 
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(90deg, #1a1a2e 0%, #3e1616 100%);
+        background: linear-gradient(0deg, #262646 0%, #460e0e 100%);
         color: #e0e0e0;
         padding: 20px;
         min-height: 100vh;
@@ -337,6 +337,34 @@
             "<br> <strong>say:</strong> Bird, bird, buh-birds the word ah well the bird bird bird well the bird is the word.\" and stun a target enemy for 1 round or 3 rounds if it's a bird. (-3 ENG, 2 round cooldown)",
         },
         {
+          name: "Original Trio",
+          type: "Character",
+          Archetype: "Nature",
+          HP: 240,
+          ATK: "33 * 2~3",
+          DEF: 10,
+          DEX: 12,
+          ENG: 9,
+          Passives:
+            "<br><strong>Trio:</strong> Counts as 3 allies.<br><strong>Heal:</strong> Passively heal 5HP every round.",
+          Ability:
+            "<br><strong>Vincent:</strong> Every time this card is damaged, it's ATK is increased by 2 (before multipliers) and it stacks indefinitely.(this move is always active, -0 ENG 0 round CD)<br><strong>Warner Bro:</strong> If an enemy winds up for an attack, only 2/3 of the damage is dealt and only the best possible negative stat for the recieving end is applied if there is an effect. (This move is always active, -0 ENG 0 Round CD)<br><strong>Runner:</strong> Distracts enemy, if the targetted enemy is high on drugs, it has a 100% chance to work (cannot work on Mechanical Archetype enemies). The move stays in effect until this character changes targets or is attacked. If this card is attacked, it will take no damage but will be stunned for one round. This move costs 3 energy per round to maintain and has a 6 round cooldown.",
+        },
+        {
+          name: "Cursed Future (Vincent)",
+          type: "Character",
+          Archetype: "Nature",
+          HP: 220,
+          ATK: "90 (135 if you consider his passive 'Proficient'.)",
+          DEF: 10,
+          DEX: 10,
+          ENG: 6,
+          Passives:
+            "<br><strong>Proficient: </strong>Any firearm Vincent wields will have 1.5x effectiveness (he does already own a Beretta)<br><strong>Darwin: </strong>Can eliminate himself from the battle/game permanently.<br><strong>Ambidextrious: </strong>Can have two item cards in active slot.<br><strong>Iron mind: </strong>This character is immune to any moves using mind control.",
+          Ability:
+            "<br><strong>''Keep going, you don't get a break'': </strong> When this card HP hits or goes below 0, it will immediately return to 50HP. If Vincent's HP ≤ 0 again, it will go back up to just 25HP, then 10HP, and then 1HP before this card <em>finally</em> dies permanently. The same however will happen to any card Vincent kills. (Move always active, -0 ENG 0 round CD)",
+        },
+        {
           name: "Shredded (Buff Shrek)",
           type: "Character",
           Archetype: "Nature",
@@ -455,6 +483,12 @@
             "All Chaos Emeralds individually have 10% greater effectiveness.",
           Active:
             "<br> <strong>Super:</strong> (requires all 7 Chaos Emeralds) upon activation, the character with all 7 emeralds will have their Maximum HP buffed to 4,500 and healed to full. They'll have infinite ENG. They'll also have 50% dodge chance and 60 DEX. Return to normal at the end of the battle. (30 Round Cooldown)",
+        },
+        {
+          name: "Жмурки (Dead Man's Bluff)",
+          type: "Skillset",
+          Passives:
+            "When the character this card is applied to dies, flip a coin (hide result from the enemy/enemies) and then either tell them the true result or lie to them. They then need to guess whether you're bluffing/lying about the result or not. If they correctly guess whether you're lying or not, they suffer 0 effects. If they are incorrect, the enemy that killed the character this card was applied to will take 1 damage, and then 2, then 4, 8, 16, 32, 64, so on and so forth until the target enemy character dies permanently for the game. ",
         },
         {
           name: "Jim's Talent",
