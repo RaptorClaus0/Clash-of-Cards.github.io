@@ -534,37 +534,37 @@ const cards = [
   {
     name: "Rigby Blaze",
     type: "Art",
-    image: "/images/Rigby Blaze.jpg",
+    image: "/Images/Rigby Blaze.jpg",
     //I have a lot of self control, but some things in this world. -Leland (Monster Energy Enjoyer for those who don't know me IRL btw)
   },
   {
     name: "Male 07 is pissed",
     type: "Art",
-    image: "/images/Male 07 is pissed.gif",
+    image: "/Images/Male 07 is pissed.gif",
   },
   {
     name: "''You Aight?''",
     type: "Art",
-    image: "/images/You Aight.jpg",
+    image: "/Images/You Aight.jpg",
   },
   {
     name: "Странное рождество...",
     type: "Art",
-    image: "/images/Странное рождество....png",
+    image: "/Images/Странное рождество....png",
   }, //translates to "Strange Christmas" -Leland
   {
     name: "Lethal Popcorn Weapon",
     type: "Art",
-    image: "/images/Lethal Popcorn Weapon.gif",
+    image: "/Images/Lethal Popcorn Weapon.gif",
   },
   {
     name: "What the f### Scout?",
     type: "Art",
-    image: "/images/BlazeFlames2.png",
+    image: "/Images/BlazeFlames2.png",
   },
   {
     name: "v0.1, yay!",
     type: "Art",
-    image: "/images/TailsVictory.gif",
+    image: "/Images/TailsVictory.gif",
   },
 ];
