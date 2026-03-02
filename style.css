@@ -1,0 +1,225 @@
+/* =============================================================================
+   style.css - Clash of Cards
+   ============================================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(90deg, #1a1a2e 0%, #3e1616 100%);
+  color: #e0e0e0;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* -----------------------------------------------------------------------------
+   Typography
+   ----------------------------------------------------------------------------- */
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #00d4ff;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  color: #00d4ff;
+}
+
+/* -----------------------------------------------------------------------------
+   Search & Filters
+   ----------------------------------------------------------------------------- */
+
+#search {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 2px solid #00d4ff;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+#search:focus {
+  outline: none;
+  border-color: #00ffff;
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
+}
+
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 25px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border-left: 4px solid #00d4ff;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* -----------------------------------------------------------------------------
+   Results Grid
+   ----------------------------------------------------------------------------- */
+
+#results {
+  column-width: 320px;
+  column-gap: 20px;
+  width: 100%;
+  margin-top: 30px;
+  orphans: 1;
+  widows: 1;
+}
+
+/* "No results" message */
+#results .no-results {
+  column-span: all;
+  text-align: center;
+  color: rgba(224, 224, 224, 0.5);
+  font-size: 1.1rem;
+  padding: 60px 20px;
+}
+
+/* -----------------------------------------------------------------------------
+   Card
+   ----------------------------------------------------------------------------- */
+
+.card {
+  break-inside: avoid-column;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 20px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  border: 2px solid #00d4ff;
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  cursor: zoom-in;
+}
+
+.card:first-child {
+  margin-top: 0;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: #00ffff;
+  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
+}
+
+.card h2 {
+  margin: 0 0 15px 0;
+  font-size: 1.5rem;
+  color: #00ffff;
+  border-bottom: 2px solid #00d4ff;
+  padding-bottom: 10px;
+}
+
+.card p {
+  margin: 10px 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.card strong {
+  color: #00d4ff;
+}
+
+.card img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* Scrollbar inside cards */
+.card::-webkit-scrollbar {
+  width: 6px;
+}
+.card::-webkit-scrollbar-thumb {
+  background: #00d4ff;
+  border-radius: 10px;
+}
+
+/* -----------------------------------------------------------------------------
+   Modal
+   ----------------------------------------------------------------------------- */
+
+#card-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  cursor: zoom-out;
+}
+
+#modal-content-wrapper {
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+#modal-content-wrapper .card {
+  width: 100%;
+  max-width: 100%;
+  background-color: rgba(26, 26, 46, 0.4);
+  border: 3px solid #00ffff;
+  cursor: default;
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#modal-content-wrapper .card:hover {
+  transform: none;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.close-hint {
+  position: absolute;
+  top: 20px;
+  color: #00d4ff;
+  font-weight: bold;
+  pointer-events: none;
+}
