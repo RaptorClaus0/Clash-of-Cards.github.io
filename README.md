@@ -8,5 +8,4 @@ Viewer discretion of index.html code is advised.
 
 Versions:
     Current: V0.1.0
-
-    Past: 0.0.1-0.0.84
+    past: V0.0.1-0.0.84
