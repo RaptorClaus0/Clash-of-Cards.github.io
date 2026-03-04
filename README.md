@@ -5,3 +5,8 @@ RaptorClaus0 is the main coder, while MonsterDewEnjoyer mainly works on the phyc
 Thanks to Claude AI for helping with the code, this is my first real project, so I don't know what I'm doing.
 
 Viewer discretion of index.html code is advised.
+
+Versions:
+    Current: V0.1.0
+
+    Past: 0.0.1-0.0.84

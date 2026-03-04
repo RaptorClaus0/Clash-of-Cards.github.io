@@ -565,4 +565,5 @@ const cards = [
     image: "https://i.imgur.com/OazMwE6.gif",
   },//Yippie!
   //https://i.imgur.com/apwcpTG.jpeg here's the link to the assets folder, Brayden. -Leland
+  //nice
 ];
