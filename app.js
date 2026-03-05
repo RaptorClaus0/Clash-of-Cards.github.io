@@ -12,7 +12,7 @@ function buildBackgroundStyle(card) {
     return `background: linear-gradient(135deg, ${card.background[0]}, ${card.background[1]});`;
   }
   if (typeof card.background === "string") {
-    return `background: ${card.background}; background-size: cover; background-position: center;`;
+    return `background: ${card.background};`;
   }
   return "";
 }
@@ -21,7 +21,10 @@ function buildBackgroundStyle(card) {
 // Build a card's inner HTML from its data object
 // -----------------------------------------------------------------------------
 function buildCardContent(card) {
-
+  if (card.image) {
+    return `<img src="${card.image}" alt="${card.name}" style="display:block; width:100%; max-width:480px; height:auto; margin-top:8px; border-radius:4px;">`;
+  }
+  
   // Helper: only render a row if the value exists and isn't falsy
   const row = (label, value) =>
     value !== undefined && value !== null && value !== ""
@@ -42,7 +45,7 @@ function buildCardContent(card) {
     ${row("Active", card.active)}
     ${row("Extra", card.extra)}
   `;
-
+  
 }
 
 // -----------------------------------------------------------------------------
