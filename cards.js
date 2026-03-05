@@ -144,7 +144,7 @@ const cards = [
       <strong>Chaos Control:</strong> Teleport behind two selected enemies and deal 50 ATK to both of them (not negated by DEF).
       <br><strong>Chaos Blast:</strong> Charge up for one round (Shadow is invulnerable in this one round) and then deal the amount of damage that Shadow has taken back to all enemies (divide the damage equally between the enemies).
     `,
-    background: ["#00000060", "#ff000060"],
+    background: ["#00000060", "#ff000060"]
   }, //ALL HAIL SHADOW!!! Also has combat related PTSD from when he was direct impacted by 80 S-8 unguided rockets from an Mi-24 Attack Helicopter.
   //I may or may not be the reason for the PTSD -brayden
 
@@ -532,37 +532,37 @@ const cards = [
   {
     name: "Rigby Blaze",
     type: "Art",
-    image: "/images/Rigby Blaze.jpg",
+    image: "https://i.imgur.com/jQMhGIn.jpeg",
     //I have a lot of self control, but some things in this world. -Leland (Monster Energy Enjoyer for those who don't know me IRL btw)
   },
   {
     name: "Male 07 is pissed",
     type: "Art",
-    image: "/images/Male 07 is pissed.gif",
+    image: "https://i.imgur.com/CPK3dbH.gif",
   },
   {
     name: "''You Aight?''",
     type: "Art",
-    image: "/images/You Aight.jpg",
+    image: "https://i.imgur.com/apwcpTG.jpeg",
   },
   {
     name: "Странное рождество...",
     type: "Art",
-    image: "/images/Странное рождество....png",
+    image: "https://i.imgur.com/LxAGxnc.png",
   },//translates to "Strange Christmas" -Leland
   {
     name: "Lethal Popcorn Weapon",
     type: "Art",
-    image: "/images/Lethal Popcorn Weapon.gif",
+    image: "https://i.imgur.com/vucQrKV.gif",
   },
   {
     name: "What the f### Scout?",
     type: "Art",
-    image: "/images/BlazeFlames2.png",
+    image: "https://i.imgur.com/WuZhqqw.png",
   },
   {
     name: "v0.1, yay!",
     type: "Art",
-    image: "/images/TailsVictory.gif",
+    image: "https://i.imgur.com/OazMwE6.gif",
   },
 ];
