@@ -5,28 +5,22 @@
 // =============================================================================
 
 // -----------------------------------------------------------------------------
+// Build a background style string from a card's background property
+// -----------------------------------------------------------------------------
+function buildBackgroundStyle(card) {
+  if (Array.isArray(card.background) && card.background.length === 2) {
+    return `background: linear-gradient(135deg, ${card.background[0]}, ${card.background[1]});`;
+  }
+  if (typeof card.background === "string") {
+    return `background: ${card.background}; background-size: cover; background-position: center;`;
+  }
+  return "";
+}
+
+// -----------------------------------------------------------------------------
 // Build a card's inner HTML from its data object
 // -----------------------------------------------------------------------------
 function buildCardContent(card) {
-  if (card.image) {
-    return `<img src="${card.image}" alt="${card.name}">`;
-  }
-  let backgroundStyle = "";
-
-  // If background is an array → gradient
-  if (Array.isArray(card.background) && card.background.length === 2) {
-  backgroundStyle = `background: linear-gradient(135deg, ${card.background[0]}, ${card.background[1]});`;
-  }
-
-  // If background is a string → assume it's a CSS value (like url(...))
-  else if (typeof card.background === "string") {
-  backgroundStyle = `background: ${card.background}; background-size: cover; background-position: center;`;
-  }
-
-  // Otherwise use default
-  else {
-  backgroundStyle = "";
-  }
 
   // Helper: only render a row if the value exists and isn't falsy
   const row = (label, value) =>
@@ -35,7 +29,6 @@ function buildCardContent(card) {
       : "";
 
   return `
-  <div class="card" style="${backgroundStyle}">
     ${row("Type", card.type)}
     ${row("Subtype", card.subtype)}
     ${row("Archetype", card.archetype)}
@@ -49,7 +42,7 @@ function buildCardContent(card) {
     ${row("Active", card.active)}
     ${row("Extra", card.extra)}
   `;
-  
+
 }
 
 // -----------------------------------------------------------------------------
@@ -66,7 +59,7 @@ function displayResults(cardList) {
   container.innerHTML = cardList
     .map(
       (card) => `
-        <div class="card" onclick="openModal(this)">
+        <div class="card" style="${buildBackgroundStyle(card)}" onclick="openModal(this)">
           <h2>${card.name}</h2>
           ${buildCardContent(card)}
         </div>
