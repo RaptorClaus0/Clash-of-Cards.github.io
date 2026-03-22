@@ -22,7 +22,7 @@ function buildBackgroundStyle(card) {
 // -----------------------------------------------------------------------------
 function buildCardContent(card) {
   if (card.image) {
-    return `<img src="${card.image}" alt="${card.name}" style="display:block; width:100%; max-width:480px; height:auto; margin-top:8px; border-radius:4px;">`;
+    return `<img src="${card.image}" alt="${card.name}" style="display:block; width:100%; max-width:480px; height:auto; margin-top:8px; border-radius:4px; margin-left:auto; margin-right:auto;">`;
   }
   
   // Helper: only render a row if the value exists and isn't falsy
