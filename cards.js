@@ -3,7 +3,7 @@
 // =============================================================================
 // Property naming convention (camelCase):
 //   name, type, subtype, archetype, hp, atk, def, dex, eng
-//   passives, ability, active, extra, image
+//   passives, ability, active, extra, image, background
 // =============================================================================
 
 const cards = [
@@ -55,11 +55,13 @@ const cards = [
     def: 15,
     dex: 25,
     eng: 10,
-    passives:
-      "<strong>'Royal' Guards: </strong>All allies gain 5 DEF, and for every Ally in her squad, she'll gain 10 DEF for herself.<br><strong>Sol Flames:</strong> All base attacks are considered fire attacks.",
+    passives:`
+      <strong>'Royal' Guards: </strong>All allies gain 5 DEF, and for every Ally in her squad, she'll gain 10 DEF for herself.
+      <br><strong>Sol Flames:</strong> All base attacks are considered fire attacks.",
+      `,
     ability: `
       <strong>Sol Accumulation:</strong> For any item action that occurs in Blaze's squad, she'll gain a token that increases her ATK by 5, and it stacks. Tokens can be traded in for 1 ENG each.
-    `,
+      `,
   }, //Don't tell me you wouldn't if you had the chance -Leland
   //I have a boyfriend. -Brayden
   //Oh damn, didn't think you swung all the way, I thought you were, like, both. Aight. -Leland
@@ -75,7 +77,9 @@ const cards = [
     def: 15,
     dex: 18,
     eng: "15 (+2 ENG per round until full)",
-    passives: "Can fly over water tiles.",
+    passives: `
+      Can fly over water tiles.
+      `,
     ability: `
       <strong>It's no use!:</strong> Paralyze an enemy for 3 ENG per round, and a maximum of 3 rounds straight. (-3 ENG per round, 4 round cooldown)
       <br><strong>Unstun:</strong> Cure an ally's stun for 2 ENG.
@@ -92,10 +96,12 @@ const cards = [
     def: 18,
     dex: 26,
     eng: "6 (+2 per round)",
-    passives: "At 40 DEX, Sonic has a 95% dodge chance of any attacks.",
-    ability: `
+    passives: `
+      At 40 DEX, Sonic has a 95% dodge chance of any attacks.
+      `,
+    ability:`
       <strong>Speed Build:</strong> For 1 extra energy per round, increase DEX by 1 with a limit of 4 (+1 DEX costs 1 ENG, +2 DEX costs 2 ENG...) and when the desired DEX is reached it only costs 1 ENG every other round to maintain it. Can start and stop this move at any point with 1 round cooldown each time it's used. Cannot be used past 30 DEX.
-    `,
+      `,
   },
 
   {
@@ -107,10 +113,13 @@ const cards = [
     def: 10,
     dex: 18,
     eng: 5,
-    passives: "Can fly over water with -2 DEX.",
+    passives: `
+      Can fly over water with -2 DEX.
+      `,
     ability: `
       <strong>Gear Runover':</strong> Spend a round circling above a target enemy (Makes them dizzy, +20% chance to miss for 3 rounds) (while circling, this card has a 95% chance to dodge) then strike the opponent with Jet's hoverboard dealing 100 damage and stunning the target enemy for a round. (-3 ENG, 5 round cooldown)
-    `,//The bird is the word. -Peter
+      `,
+      //The bird is the word. -Peter
   },
 
   {
@@ -122,7 +131,9 @@ const cards = [
     def: 15,
     dex: 20,
     eng: 8,
-    passives: "No fall damage 'Nimble'; +5% dodge chance",
+    passives: `
+      No fall damage 'Nimble'; +5% dodge chance
+      `,
     ability: `
       <strong>Defense Stance:</strong> Reallocate up to 50 from ATK to DEF and divide the remaining ATK by 2. This card is stun immune when in defense stance. Move is cancelled immediately without using an action if another special move, item or skillset is used by Honey. (-0 ENG, 2 round cooldown)
       <br><strong>Honey Glider / Pounce:</strong> Deal 70 ATK to a target opponent (not negated by DEF) and stun the opponent for a round, however, you will take on all of the opponents effects. (-4 ENG, 3 round cooldown)
@@ -138,8 +149,9 @@ const cards = [
     def: 20,
     dex: 20,
     eng: 10,
-    passives:
-      "Can match Sonic's DEX if he's a teammate (capped at 36 DEX). All of Shadow's attacks against government employees are 33% more effective.",
+    passives:`
+      Can match Sonic's DEX if he's a teammate (capped at 36 DEX). All of Shadow's attacks against government employees are 33% more effective.
+      `,
     ability: `
       <strong>Chaos Control:</strong> Teleport behind two selected enemies and deal 50 ATK to both of them (not negated by DEF).
       <br><strong>Chaos Blast:</strong> Charge up for one round (Shadow is invulnerable in this one round) and then deal the amount of damage that Shadow has taken back to all enemies (divide the damage equally between the enemies).
@@ -157,8 +169,9 @@ const cards = [
     def: 16,
     dex: 16,
     eng: 16,
-    passives:
-      "<strong>Chaos:</strong> Every three rounds, the MaxHP and BaseATK of all friends and foes in the battle is changed by +/-20.",
+    passives: `
+      <strong>Chaos:</strong> Every three rounds, the MaxHP and BaseATK of all friends and foes in the battle is changed by +/-20.
+      `,
   },
   {
     name: "Model A0001 Battle Droid",
@@ -169,10 +182,13 @@ const cards = [
     def: "30 (it's made of solid steel)",
     dex: 10,
     eng: 10,
-    passives:
-      "<strong>Powered by ChatGPT: </strong>+10% miss chance<br><strong>High Melting Point: </strong> Takes 40% less burn damage.",
+    passives:`
+      <strong>Powered by ChatGPT: </strong>+10% miss chance<br><strong>High Melting Point: </strong> Takes 40% less burn damage.
+      `,
     ability: `
-      <strong>Laser:</strong> Can be used to burn flammable materials and melt plastics or metal. When used on an enemy, deal 1.5x base attack but there will be a 70% miss chance by default. (-5 ENG, 5 Round Cooldown)<br><strong>Shield: </strong>When activated, the next attack this card recieves will be negated by 50% and stuns the attacker for two rounds. Shield lasts for three rounds by default, during which this card cannot use any attacks. (-2 ENG per round, +2 rounds Cooldown for every round it was active)<br><strong>Self Repair: </strong>Heal 25 HP per round when activated (twice effectiveness with Tails the Fox on the team)(-1 ENG per round, 3 round cooldown).
+      <strong>Laser:</strong> Can be used to burn flammable materials and melt plastics or metal. When used on an enemy, deal 1.5x base attack but there will be a 70% miss chance by default. (-5 ENG, 5 Round Cooldown)
+      <br><strong>Shield: </strong>When activated, the next attack this card recieves will be negated by 50% and stuns the attacker for two rounds. Shield lasts for three rounds by default, during which this card cannot use any attacks. (-2 ENG per round, +2 rounds Cooldown for every round it was active)
+      <br><strong>Self Repair: </strong>Heal 25 HP per round when activated (twice effectiveness with Tails the Fox on the team)(-1 ENG per round, 3 round cooldown).
     `,
   },//This things targetting system is powered by and was also written by ChatGPT.. not the card game mechanics but like the clankers arm cannon I mean. -Leland
 
@@ -187,7 +203,7 @@ const cards = [
     eng: "maximum of 5, start at 3.",
     ability: `
       <strong>say:</strong> "Bird, bird, buh-birds the word ah well the bird bird bird well the bird is the word." and stun a target enemy for 1 round or 3 rounds if it's a bird. (-3 ENG, 2 round cooldown)
-    `,
+      `,
   },
 
   {
@@ -199,10 +215,12 @@ const cards = [
     def: "16 ± 4",
     dex: 15,
     eng: "10",
-    passives: "<strong>inconspicuous:</strong> Enemies will not immediately battle with this card.",
+    passives: `
+      <strong>inconspicuous:</strong> Enemies will not immediately battle with this card.
+      `,
     ability: `
       <strong>Paper Maché:</strong> Wear the face and clothes of a defeated enemy or ally (+50% dodge chance)
-    `,
+      `,
   },//*ahem*, gentlemen?
 
   {
@@ -228,12 +246,50 @@ const cards = [
     def: 20,
     dex: 14,
     eng: 8,
-    passives:
-      "-20% damage taken from blunt attacks. Cannot ride hovercraft or fit inside of small vehicles like the Бумер. +10% effectiveness against Mechanical archetype enemies.",
+    passives: `
+      -20% damage taken from blunt attacks. Cannot ride hovercraft or fit inside of small vehicles like the Бумер. +10% effectiveness against Mechanical archetype enemies.
+      `,
     ability: `
       <strong>Steely Abs:</strong> Take only 30 damage from the next attack this card receives but also only deal 60 damage the following round and also first passive is halved when this move is active. (-3 ENG on activation, -1 ENG per round maintained, 5 round cooldown)
     `,
   }, //I like 'em big, I like 'em chunky.
+
+  {
+    name: "Metal Sonic",
+    type: "Character",
+    archetype: "Mechanical",
+    hp: 250,
+    atk: 30,
+    def: "33% damage reduction",
+    dex: 24,
+    eng: "20 rounds",
+    passives: `
+      Repairs to this card or under 20 HP (Not passive repairs) are 100% more effective.,
+      <br>Gets an extra 5 energy per chaod Emerald.,
+      <br> will recharge 4 ENG per round out of battle if unmoving,
+    `,
+    ability: `
+      <br><strong>"Dead or Alive, you're mine.":</strong><br> Metal Sonic will cease getting a damage reduction from the target enemy, but will deal a bonus 33% damage in all attacks towards that enemy.<br><br><strong>Destructive Charge:</strong><br>Metal Sonic can deal up to 60 damage to the enemy and will also damage itself by that +100% and a tolerance of 20%.
+      `,  
+  },
+
+  {
+    name: "Toyota Tundra",
+    tpye: "Character",
+    archetype: "Mechanical",
+    hp: 210,
+    atk: "25*6 (Roll D6 to see how many hits.",
+    def: 12,
+    dex: 15,
+    eng: 10,
+    passives: `
+    Can drive up to 3 other char-cards (set their DEX to this cards Dex untill discmount)
+    `,
+    ability: `
+    <strong>Sick Drifts:</strong> Halve hit chance(x2 dodge) miss chance x1.33(15% base) card takes 10 damage every round move is in effect. (tails cannot repair when this move is in effect.) (-2 ENG per round, 3 round cooldown)
+    <br><strong>Full Throttle:</strong> Set Dex to 20 for 3 rounds, take 75 damage (Escape battle)
+    `,
+  },
 
   // ---------------------------------------------------------------------------
   // Items
@@ -253,8 +309,9 @@ const cards = [
   {
     name: "Engineer/Modder",
     type: "Item",
-    passives:
-      "All Mechanical Archetype cards in squad take 10 less damage from any attack, and heal 1.5x as effectively.",
+    passives: `
+      All Mechanical Archetype cards in squad take 10 less damage from any attack, and heal 1.5x as effectively.
+      `,
     ability: `
       <strong>Technology:</strong> When this effect is applied to a Mechanical Archetype character, there's a 5% chance that any damage it takes will be multiplied by 0.5x (-1 ENG per round, 5 round cooldown after).
       <br><strong>Mechanic:</strong> On any ally, buff one random stat by 10% (3 used, no Cooldown, -1 ENG. Can only be used on Mechanical Archetype cards.)
@@ -265,8 +322,9 @@ const cards = [
   {
     name: "Red Chaos Emerald",
     type: "Item",
-    passives:
-      "+2 ENG per round (until full ENG is reached). -1 Cooldown length",
+    passives: `
+      +2 ENG per round (until full ENG is reached). -1 Cooldown length
+      `,
     active: `
       <strong>Flames of Disaster:</strong> Double BaseATK, any enemy hit with this attack is set on fire taking 7 damage for 5 rounds. When this move is activated, it cannot be deactivated for 3 rounds. Additionally, there's a 15% chance to miss melee attacks and 20% chance to miss ranged attacks. (-1 ENG per round maintained, 5 round cooldown)
     `,
@@ -275,15 +333,20 @@ const cards = [
   {
     name: "Blue Chaos Emerald",
     type: "Item",
-    passives: "+3 DEX",
-    active:
-      "Mechanical Archetypes can equip this item for an additional +4 ENG. All cooldowns are one round faster (does NOT change charge times)",
+    passives: `
+      +3 DEX
+    `,
+    active: `
+      Mechanical Archetypes can equip this item for an additional +4 ENG. All cooldowns are one round faster (does NOT change charge times)
+      `,
   },
 
   {
     name: "Purple Chaos Emerald",
     type: "Item",
-    passives: "All attacks to the enemy do 5 extra damage.",
+    passives: `
+      All attacks to the enemy do 5 extra damage.
+      `,
     active: `
       <strong>Discord:</strong> Pick a target, that target will take 15 damage every round. Enemy teammates will take 3 damage every round passively. If all of the other 6 Chaos Emeralds are present and are being used by the holder of this card, all enemies take 20 damage per round and their heals are only 75% as effective.
     `,
@@ -292,8 +355,9 @@ const cards = [
   {
     name: "Pink Chaos Emerald",
     type: "Item",
-    active:
-      "<strong>Zen:</strong> Passively heals the holder of this card by 20 every round and passively heals teammates by 5 every round. All other heals in the battle have 20% more effectiveness and all heals outside of battle are 100% more effective.",
+    active: `
+      <strong>Zen:</strong> Passively heals the holder of this card by 20 every round and passively heals teammates by 5 every round. All other heals in the battle have 20% more effectiveness and all heals outside of battle are 100% more effective.
+      `,
   },
 
   {
@@ -308,7 +372,9 @@ const cards = [
   {
     name: "Yellow Chaos Emerald",
     type: "Item",
-    passives: "+4 ENG",
+    passives: `
+      +4 ENG
+      `,
     active: `
       <strong>Zeus:</strong> Call the god of thunder to smite a target enemy. It stuns Mechanical archetypes for two rounds, and sets nature archetypes on fire for 5 rounds dealing 5 damage each round. (-10 ENG, 6 Round Cooldown)
     `,
@@ -317,7 +383,9 @@ const cards = [
   {
     name: "White Chaos Emerald",
     type: "Item",
-    passives: "+5 DEF",
+    passives: `
+      +5 DEF
+    `,
     active: `
       <strong>Push:</strong> Telekinetically throw an enemy, dealing 30 damage, stunning the enemy for one round (unless they just got out of stun the previous round) and lowering their DEX by 3 for 3 rounds. (-5 ENG, 6 Round Cooldown)
     `,
@@ -335,7 +403,9 @@ const cards = [
   {
     name: "M92F Beretta Service Pistol",
     type: "Item",
-    passives: "The character this is applied to changes their ATK stat to ''40 BaseATK + (20*1~6)''. If this card is applied to a character that already has a gun (or Shadow the Hedgehog) add twenty to both of those numbers like this: ''60 BaseATK + (40*1~6)''. Roll a d6 for the second part of the attack equation.",
+    passives: `
+      The character this is applied to changes their ATK stat to "40 BaseATK + (20*1~6)". If this card is applied to a character that already has a gun (or Shadow the Hedgehog) add twenty to both of those numbers like this: "60 BaseATK + (40*1~6)". Roll a d6 for the second part of the attack equation.
+      `,
   },
 
   {
@@ -355,11 +425,13 @@ const cards = [
   },
 
   {
-    name: "FIM 92 ''Stinger'' L Variant",
+    name: "FIM 92 'Stinger' L Variant",
     type: "Item",
-    passives: "-4 DEX or you can opt for +1 round charge-up.",
+    passives: `
+      -4 DEX or you can opt for +1 round charge-up.
+      `,
     ability: `
-      <strong>''Star Streaker'':</strong> This variant of the FIM 92, also known as the ''Star Streaker'' can target any airborne entity including drones, planes, flying foxes, and hedgehogs.<br><br>Deals 50 ATK to Nature archetypes and 70 ATK to Mechanical archetypes or Clankers. If an opponent does a dodge check, it's their DEX*2 as a percent. (e.g. 15 DEX would equal a 30% dodge chance)
+      <strong>"Star Streaker":</strong> This variant of the FIM 92, also known as the "Star Streaker" can target any airborne entity including drones, planes, flying foxes, and hedgehogs.<br><br>Deals 50 ATK to Nature archetypes and 70 ATK to Mechanical archetypes or Clankers. If an opponent does a dodge check, it's their DEX*2 as a percent. (e.g. 15 DEX would equal a 30% dodge chance)
     `,
   },
 
@@ -403,6 +475,29 @@ const cards = [
   }, //SOME FOLKS INHERIT STAR SPANGLED EYES- OOH THEY'RE RED WHITE AND BLUE!
   //WHAT THE FUCK IS A KILOMETER!!!!! *Eagle sound* -brayden
 
+  {
+    name: "Kamikazi Drone",
+    type: "Item",
+    ability: `
+      This card can be used once.<br>
+      If the HP of the target enemy is marked "undefined" the drone will deal the equivilant of 500ATK.
+      <br>Otherwise, it can either:
+      <br>Deal 50% of the target enemy's current HP,
+      <br>Drain the target enemy's ENG to 0.
+      <br>or
+      <br>Destroy on of the target enemy's Items/Skillsets (excluding Chaos Emeralds)
+      `,
+
+  },
+
+  {
+    name: "Minecraft Grass Block",
+    type: "item",
+    ability: `
+      This card will use itslef in the event the attached card will take more then 60 ATK from Blunt or Fall damage this card will negate 60 of that damage. It will then collapse it was not a Minecraft Grass Block. it was a person... woopsie. Will get back p after 3 rounds. one more use & it just dies.
+      `,
+  },
+
   // ---------------------------------------------------------------------------
   // Skillsets
   // ---------------------------------------------------------------------------
@@ -419,44 +514,71 @@ const cards = [
   {
     name: "Quick Dash",
     type: "Skillset",
-    passives: "<strong>Nimble: </strong>Increase the applied characters default dodge chance by 5%.<br><strong>Slightly faster:</strong> +2 DEX<br><strong>Skipped arm days for leg days: </strong>The applied card will deal 20 less melee damage.",
+    passives: `
+      <strong>Nimble: </strong>Increase the applied characters default dodge chance by 5%.
+      <br><strong>Slightly faster:</strong> +2 DEX
+      <br><strong>Skipped arm days for leg days: </strong>The applied card will deal 20 less melee damage.
+      `,
     active: `
-      <strong>Decieve: </strong>Move extremely quickly creating a phantom copy of yourself (+50% dodge chance) (costs 3 energy to maintain every round, 3 round cooldown)<br><strong>Stretches: </strong>Increase dodge chance by 1% - stacks up to +20% (-0 ENG, 1 Round cooldown)<br><strong>Bypass:</strong> Disorient a target enemy (they have a +20% miss chance) and you can attack the enemy as well (they'll only have 5% dodge chance at the highest).(-3 ENG, 5 Round cooldown)<br><strong>Reflex: </strong> Set dodge chance to (DEX*3)% for 3 rounds (-5 ENG, 8 Round cooldown).
+      <strong>Decieve: </strong>Move extremely quickly creating a phantom copy of yourself (+50% dodge chance) (costs 3 energy to maintain every round, 3 round cooldown)
+      <br><strong>Stretches: </strong>Increase dodge chance by 1% - stacks up to +20% (-0 ENG, 1 Round cooldown)
+      <br><strong>Bypass:</strong> Disorient a target enemy (they have a +20% miss chance) and you can attack the enemy as well (they'll only have 5% dodge chance at the highest).(-3 ENG, 5 Round cooldown)
+      <br><strong>Reflex: </strong> Set dodge chance to (DEX*3)% for 3 rounds (-5 ENG, 8 Round cooldown).
     `,
   },
 
   {
     name: "Pyrotechnics Skillset",
     type: "Skillset",
-    active:
-      "<strong>Burn to Ashes: </strong>Burn everything flammable currently in game which will remove certain buffs or debuffs from the environment. If there is nothing flammable that is causing a debuff, it will instead damage all enemies for 30 burn damage and an additional 10 burn damage for 3 rounds after. (-3 ENG, 3 round cooldown)<br><strong>Fire Toss: </strong>When this attack hits an enemy, it deals 15 damage on contact, lowers DEX and DEF by 5, and continues doing 5 damage per round for 5 rounds. Debuffs wear off one round after they stop burning. (-6 ENG, 8 Round Cooldown)",
+    active: `
+      <strong>Burn to Ashes: </strong>Burn everything flammable currently in game which will remove certain buffs or debuffs from the environment. If there is nothing flammable that is causing a debuff, it will instead damage all enemies for 30 burn damage and an additional 10 burn damage for 3 rounds after. (-3 ENG, 3 round cooldown)
+      <br><strong>Fire Toss: </strong>When this attack hits an enemy, it deals 15 damage on contact, lowers DEX and DEF by 5, and continues doing 5 damage per round for 5 rounds. Debuffs wear off one round after they stop burning. (-6 ENG, 8 Round Cooldown)
+      `,
   },
 
   {
     name: "Жмурки (Dead Man's Bluff)",
     type: "Skillset",
-    passives:
-      "When the character this card is applied to dies, flip a coin (hide result from the enemy/enemies) and then either tell them the true result or lie to them. They then need to guess whether you're bluffing/lying about the result or not. If they correctly guess whether you're lying or not, they suffer 0 effects. If they are incorrect, the enemy that killed the character this card was applied to will take 1 damage, and then 2, then 4, 8, 16, 32, 64, so on and so forth until the target enemy character dies permanently for the game.",
+    passives: `
+      When the character this card is applied to dies, flip a coin (hide result from the enemy/enemies) and then either tell them the true result or lie to them. They then need to guess whether you're bluffing/lying about the result or not. If they correctly guess whether you're lying or not, they suffer 0 effects. If they are incorrect, the enemy that killed the character this card was applied to will take 1 damage, and then 2, then 4, 8, 16, 32, 64, so on and so forth until the target enemy character dies permanently for the game.
+      `,
   },
 
   {
     name: "Personalized OST Skillset",
     type: "Skillset",
-    passives:
-      "The character that this skillset is applied to will ''lock the f### in''.<br><br><strong>Locked In: </strong><br>+15% chance that an attack to this card only deals 33% of the damage it's supposed to.<br>Immune to single round stuns, and other stuns are halved in length (rounding up if decimal).<br>The character this card is applied to can do both squad actions in a round.<br>-10% dodge chance (However, dodge chance cannot go below 0% with this card equipped)",
+    passives: `
+      The character that this skillset is applied to will "lock the f### in".
+      <br>
+      <br><strong>Locked In: </strong>
+      <br>+15% chance that an attack to this card only deals 33% of the damage it's supposed to.<br>Immune to single round stuns, and other stuns are halved in length (rounding up if decimal).
+      <br>The character this card is applied to can do both squad actions in a round.<br>-10% dodge chance (However, dodge chance cannot go below 0% with this card equipped)
+      `,
   },
 
   {
     name: "Jim's Talent",
     type: "Skillset",
-    passives:
-      "Buff all stats by 50 with a 10% chance to explode and die instantly every turn.",
+    passives: `
+      Buff all stats by 50 with a 10% chance to explode and die instantly every turn.
+      `,
   }, //who the fuck is Jim anyway?
   //idk -brayden
 
   // ---------------------------------------------------------------------------
   // Events
   // ---------------------------------------------------------------------------
+
+  {
+    name: "When Day Breaks",
+    type: "Event",
+    ability: `
+    <strong>Archetype Specific Effects:</strong>
+    <br><strong>Natural:</strong> Either wear thick heavy clothes (negate heat damage) in exchange for 2 DEX & 1 ENG or take 30 Heat damage every round.
+    <br><strong>Mechanical:</strong> Overheat within 3 rounds (stun for 1 round)
+    <br><strong>Mythic</strong> Lover stamina by 2
+    `,
+  },
 
   {
     name: "Jim's Reckoning",
@@ -470,7 +592,7 @@ const cards = [
     name: "Snap of Thanos",
     type: "Event",
     ability: `
-      <strong>''I am... inevitable'':</strong> Flip a coin for every character on the board. If heads, they will turn into dust and blow away into the wind like Mr. Game and Watch when he didn't feel so good. Two rounds later, they will reappear at a random coordinate on the board (chosen by dice or RNG) with 75% of their maximum HP.
+      <strong>"I am... inevitable":</strong> Flip a coin for every character on the board. If heads, they will turn into dust and blow away into the wind like Mr. Game and Watch when he didn't feel so good. Two rounds later, they will reappear at a random coordinate on the board (chosen by dice or RNG) with 75% of their maximum HP.
     `,
   },//I don't feel so good... aaaAAAUUUGHHH!!! -Mr. Game and Watch
 
@@ -521,13 +643,11 @@ const cards = [
   // Art
   // ---------------------------------------------------------------------------
 
-  //==========================================================================\
-  //                                                                           \
-  //Make sure the link is a "//cdn.discordapp.com" not "//media.discordapp.net" |
-  //                 Also make sure they are ".png" or ".gif"                   |
-  //                                                                           /
-  //==========================================================================/
-  //I did not need it make it look like that lol -brayden
+  {
+    name: "cursed comments in code",
+    tpye: "Art",
+    image: "[LINK GOES HERE]",
+  },
 
   {
     name: "Rigby Blaze",
@@ -535,31 +655,37 @@ const cards = [
     image: "https://i.imgur.com/jQMhGIn.jpeg",
     //I have a lot of self control, but some things in this world. -Leland (Monster Energy Enjoyer for those who don't know me IRL btw)
   },
+
   {
     name: "Male 07 is pissed",
     type: "Art",
     image: "https://i.imgur.com/CPK3dbH.gif",
   },
+
   {
-    name: "''You Aight?''",
+    name: "'You Aight?'",
     type: "Art",
     image: "https://i.imgur.com/apwcpTG.jpeg",
   },
+
   {
     name: "Странное рождество...",
     type: "Art",
     image: "https://i.imgur.com/LxAGxnc.png",
   },//translates to "Strange Christmas" -Leland
+
   {
     name: "Lethal Popcorn Weapon",
     type: "Art",
     image: "https://i.imgur.com/vucQrKV.gif",
   },
+
   {
     name: "What the f### Scout?",
     type: "Art",
     image: "https://i.imgur.com/WuZhqqw.png",
   },
+
   {
     name: "v0.1, yay!",
     type: "Art",
