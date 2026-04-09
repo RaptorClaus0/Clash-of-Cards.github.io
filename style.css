@@ -10,10 +10,22 @@
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(180deg, #145f0d 0%, #060c5f 100%);
   color: #e0e0e0;
   padding: 20px;
   min-height: 100vh;
+  position: relative; /* needed so the pseudo-element positions against body */
+}
+
+#bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 500px); /* matches your travel value */
+  object-fit: cover;
+  object-position: center top;
+  z-index: -1;
+  will-change: transform;
 }
 
 /* -----------------------------------------------------------------------------
