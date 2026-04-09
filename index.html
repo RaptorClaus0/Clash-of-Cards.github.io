@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <img id="bg-image" />
     <h1>Clash of Cards</h1>
 
     <h2>Card Search</h2>
@@ -28,6 +29,41 @@
       <!-- stopPropagation so clicking the card itself doesn't close the modal -->
       <div id="modal-content-wrapper" onclick="event.stopPropagation()"></div>
     </div>
+
+    <script>
+  const landscapes = [
+    'https://i.imgur.com/LgL85KZ.png',  // add as many as you want
+  ];
+  const portraits = [
+    'https://i.imgur.com/4T6DMQd.png',
+    // 'portrait-bg2.jpg', etc.
+  ];
+
+  function getRandomImage(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function setBackground() {
+    const img = document.getElementById('bg-image');
+    const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+    img.src = isPortrait ? getRandomImage(portraits) : getRandomImage(landscapes);
+  }
+
+  function updateParallax() {
+    const scrolled = window.scrollY;
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    const percent = maxScroll > 0 ? scrolled / maxScroll : 0;
+    const travel = percent * 500;
+    document.getElementById('bg-image').style.transform = `translateY(-${travel}px)`;
+  }
+
+  // Switch background if the user rotates their device
+  window.matchMedia("(orientation: portrait)").addEventListener('change', setBackground);
+
+  setBackground();
+  updateParallax();
+  window.addEventListener('scroll', updateParallax);
+    </script>
 
     <!-- cards.js must come before app.js so the `cards` array is defined first -->
     <script src="cards.js"></script>
