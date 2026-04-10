@@ -12,6 +12,7 @@ const cards = [
   // ---------------------------------------------------------------------------
 
   //Black? you mean NI- (I will not end that)
+  //I can, NInjas. -Leland
   {
     name: "Mil Mi-24 Attack Helicopter + Pilot",
     type: "Character",
@@ -36,15 +37,16 @@ const cards = [
     def: 15,
     dex: 18,
     eng: 8,
-    passives: `
-      <strong>1:</strong> Can carry Nature Archetype character over water for 1 round.
+    passives: `<br>
+      <strong>1:</strong> Can carry a Nature Archetype character over water for 3 rounds.
       <br><strong>2:</strong> All Heals on Mechanical Archetypes are 1.5x as effective.
     `,
-    ability: `
-      <strong>Mecha Healer:</strong> Tails can heal a Mechanical Archetype character for 3% of their HP. (-2 ENG, 4 Round Cooldown.)
+    ability: `<br>
+      <strong>Mecha Healer:</strong> Tails can heal a Mechanical Archetype character for 6% of their HP in battle, and 15% outside of battle. (-2 ENG, 4 Round Cooldown.)
       <br><strong>Throw Partner:</strong> Tails will grab the selected teammate, and throw them at the enemy, dealing ATK*1.25. (-3 ENG, 5 Round Cooldown. It's the teammates ATK, not Tails'.)
     `,
-  },
+    background: ["#0000ff60", "#ffff0060"]
+  },//Just realized the colors, СЛАВА УКРАIНЕ!
 
   {
     name: "Blaze the Cat",
@@ -55,18 +57,20 @@ const cards = [
     def: 15,
     dex: 25,
     eng: 10,
-    passives:`
+    passives:`<br>
       <strong>'Royal' Guards: </strong>All allies gain 5 DEF, and for every Ally in her squad, she'll gain 10 DEF for herself.
       <br><strong>Sol Flames:</strong> All base attacks are considered fire attacks.",
       `,
-    ability: `
+    ability: `<br>
       <strong>Sol Accumulation:</strong> For any item action that occurs in Blaze's squad, she'll gain a token that increases her ATK by 5, and it stacks. Tokens can be traded in for 1 ENG each.
       `,
+      background: ["#ff00d460", "#8c00ff60"]
   }, //Don't tell me you wouldn't if you had the chance -Leland
   //I have a boyfriend. -Brayden
   //Oh damn, didn't think you swung all the way, I thought you were, like, both. Aight. -Leland
   //I am both, but I would rather be gay then date any female from our generation. -brayden
   //Based af I just jork it to Blaze and that's enough. -Leland
+  //(one big update later) I still jork it to Blaze. -Leland
 
   {
     name: "Silver the Hedgehog",
@@ -85,7 +89,7 @@ const cards = [
       <br><strong>Unstun:</strong> Cure an ally's stun for 2 ENG.
       <br><strong>Rock :) :</strong> Block an incoming attack by moving a heavy object in the way. Negates 90% of damage taken before DEF negation. (-3 ENG, 5 round cooldown)
     `,
-  },
+  }, //The only hedgehog who hasn't been involved in something that'd give PTSD from this game... we need to fix that.
 
   {
     name: "Sonic the Hedgehog",
@@ -102,6 +106,7 @@ const cards = [
     ability:`
       <strong>Speed Build:</strong> For 1 extra energy per round, increase DEX by 1 with a limit of 4 (+1 DEX costs 1 ENG, +2 DEX costs 2 ENG...) and when the desired DEX is reached it only costs 1 ENG every other round to maintain it. Can start and stop this move at any point with 1 round cooldown each time it's used. Cannot be used past 30 DEX.
       `,
+      background: ["#ededff60", "#0000ff60"]
   },
 
   {
@@ -139,6 +144,7 @@ const cards = [
       <br><strong>Honey Glider / Pounce:</strong> Deal 70 ATK to a target opponent (not negated by DEF) and stun the opponent for a round, however, you will take on all of the opponents effects. (-4 ENG, 3 round cooldown)
     `,
   }, //"This is a fighting tourny, kiddo. We're here to tussle!" -Honey after she uppercut Tails in the chin
+  //I'd fuck this one just as hard -Leland Vincent Dawley, my full government name.
 
   {
     name: "Shadow the Hedgehog",
@@ -173,6 +179,7 @@ const cards = [
       <strong>Chaos:</strong> Every three rounds, the MaxHP and BaseATK of all friends and foes in the battle is changed by +/-20.
       `,
   },
+
   {
     name: "Model A0001 Battle Droid",
     type: "Character",
@@ -204,7 +211,7 @@ const cards = [
     ability: `
       <strong>say:</strong> "Bird, bird, buh-birds the word ah well the bird bird bird well the bird is the word." and stun a target enemy for 1 round or 3 rounds if it's a bird. (-3 ENG, 2 round cooldown)
       `,
-  },
+  },//The horse is here?
 
   {
     name: "Spy",
@@ -221,7 +228,7 @@ const cards = [
     ability: `
       <strong>Paper Maché:</strong> Wear the face and clothes of a defeated enemy or ally (+50% dodge chance)
       `,
-  },//*ahem*, gentlemen?
+  },//Has anybody happened to find the corpse of a red spy? No? Then we still have a problem.
 
   {
     name: "AI Powered Microwave",
@@ -269,27 +276,113 @@ const cards = [
       <br> will recharge 4 ENG per round out of battle if unmoving,
     `,
     ability: `
-      <br><strong>"Dead or Alive, you're mine.":</strong><br> Metal Sonic will cease getting a damage reduction from the target enemy, but will deal a bonus 33% damage in all attacks towards that enemy.<br><br><strong>Destructive Charge:</strong><br>Metal Sonic can deal up to 60 damage to the enemy and will also damage itself by that +100% and a tolerance of 20%.
+      <br><strong>"Dead or Alive, you're mine.":</strong>
+      <br> Metal Sonic will cease getting a damage reduction from the target enemy, but will deal a bonus 33% damage in all attacks towards that enemy.<br><br><strong>Destructive Charge:</strong><br>Metal Sonic can deal up to 60 damage to the enemy and will also damage itself by that +100% and a tolerance of 20%.
       `,  
   },
 
   {
-    name: "Toyota Tundra",
-    tpye: "Character",
+    name: "Doyoda Taiga",
+    type: "Character",
     archetype: "Mechanical",
     hp: 210,
-    atk: "25*6 (Roll D6 to see how many hits.",
+    atk: "25*d6",
     def: 12,
     dex: 15,
     eng: 10,
     passives: `
-    Can drive up to 3 other char-cards (set their DEX to this cards Dex untill discmount)
+      Can drive up to 3 other char-cards (set their DEX to this cards Dex untill discmount)
+      
     `,
     ability: `
-    <strong>Sick Drifts:</strong> Halve hit chance(x2 dodge) miss chance x1.33(15% base) card takes 10 damage every round move is in effect. (tails cannot repair when this move is in effect.) (-2 ENG per round, 3 round cooldown)
-    <br><strong>Full Throttle:</strong> Set Dex to 20 for 3 rounds, take 75 damage (Escape battle)
+      <br><strong>Sick Drifts:</strong> Halve hit chance(x2 dodge) miss chance x1.33(15% base) card takes 10 damage every round move is in effect. (tails cannot repair when this move is in effect.) (-2 ENG per round, 3 round cooldown)
+      <br><strong>Full Throttle:</strong> Set Dex to 20 for 3 rounds, take 75 damage (Escape battle)
+      `,  
+  }, //copyright is a bitch
+
+  {
+    name: "Dutch & Mr. Gorneg",
+    type: "Character",
+    archetype: "Natural",
+    hp: 230,
+    atk: 80,
+    def: 15,
+    dex: 10,
+    eng: 10,
+    passives: `
+      <br>Cannot be on a team with Viktor & Nikko.
+      <br>Can have 2 item equipped at once.
+    `,
+    ability: `
+      <strong>Connections:</strong> Can trade items with any allied card on the map in just 3 rounds. (doesn't work with Viktor & nikko) (-4 ENG, 5 Round Cooldown)
+    `,  
+  },
+
+  {
+    name: "Viktor and Nikko",
+    type: "Character",
+    archetype: "Natural",
+    hp: 220,
+    atk: 90,
+    def: "10*2",
+    dex: 12,
+    eng: 12,
+    passives: `
+      Cannot be on a team with Dutch & Mr. Gorneg
+      <br>Can have 2 skilsets applied at once
+    `,
+    ability: `
+      <strong>Drug Abuse:</strong> Take a shot of "25 Hour Energy" with 1 5 hour energy, a Monster, 3 scoops of pre-workout, & a line of cocain. (-2 ENG, 10 round cooldown, Stacks up to 4 times.)
+      <br>-30 HP,
+      <br>+3 DEX,
+      <br>+5 DEF,
+      <br>+4 ENG,
+      <br>-20 ATK
+      `,  
+  },
+
+  {
+    name: "Viktor Tsoi",
+    type: "Character",
+    archetype: "Mythic",
+    hp: 100,
+    atk: "0~5",
+    def: 10,
+    dex: 8,
+    eng: "5, recharge 2 each round",
+    passives: `<br><strong>Легенда: </strong>
+      Can only take damage from Mythic attacks, attacks from Mythical items, or Mythic skillsets, or Jim.
+    `,
+    ability: `
+      <br><strong>ТЫ ЖИВ!:</strong> Summon any dead character card for 2 rounds each. (-3 ENG)
+      `,
+  },
+
+  {
+    name: "Viktor & Nikko",
+    tpye: "Character",
+    archetype: "Natural",
+    hp: 220,
+    atk: 90,
+    def: "10*2 (Flip a coin)",
+    dex: 12,
+    eng: 12,
+    passives: `
+    Cannot be on a team with Dutch & Mr. Gorneg
+    <br>Can have 2 skilsets applied at once
+    `,
+    ability: `
+      <strong>Drug Abuse:</strong> Take a shot of "25 Hour Energy" with 1 5 hour energy, a Monster, 3 scoops of pre-workout, & a line of cocain. (-2 ENG, 10 round cooldown, Stacks up to 4 times.)
+      <br>-30 HP,
+      <br>+3 DEX,
+      <br>+5 DEF,
+      <br>+4 ENG,
+      <br>-20 ATK
+      
     `,
   },
+
+  
 
   // ---------------------------------------------------------------------------
   // Items
@@ -302,6 +395,7 @@ const cards = [
     ability: `
       Gives the target character 80% more DEX for 10 rounds, but lowers their MaxHP by 10% until the end of the battle when it returns to normal (They don't heal back that HP, it's just that the MaxHP returns.) Comes in a 6 pack. DEX multiplier is not stackable. Additionally, whatever team has this will go first in battle unless contradicted by an enemy card, then go by highest BaseDEX.
     `,
+    background: ["#000000ff", "#00ff0090"]
   }, //It's green, so it's nature! Also holy shit it's expensive.
   //ha you dont have money -brayden
   //Richy rich over here. -Leland
@@ -328,6 +422,7 @@ const cards = [
     active: `
       <strong>Flames of Disaster:</strong> Double BaseATK, any enemy hit with this attack is set on fire taking 7 damage for 5 rounds. When this move is activated, it cannot be deactivated for 3 rounds. Additionally, there's a 15% chance to miss melee attacks and 20% chance to miss ranged attacks. (-1 ENG per round maintained, 5 round cooldown)
     `,
+    background: ["#ff000060", "#ff000000"]
   },
 
   {
@@ -339,6 +434,7 @@ const cards = [
     active: `
       Mechanical Archetypes can equip this item for an additional +4 ENG. All cooldowns are one round faster (does NOT change charge times)
       `,
+      background: ["#0000ff60", "#ff000000"]
   },
 
   {
@@ -350,6 +446,7 @@ const cards = [
     active: `
       <strong>Discord:</strong> Pick a target, that target will take 15 damage every round. Enemy teammates will take 3 damage every round passively. If all of the other 6 Chaos Emeralds are present and are being used by the holder of this card, all enemies take 20 damage per round and their heals are only 75% as effective.
     `,
+    background: ["#dd00ff60", "#ff000000"]
   },
 
   {
@@ -358,6 +455,7 @@ const cards = [
     active: `
       <strong>Zen:</strong> Passively heals the holder of this card by 20 every round and passively heals teammates by 5 every round. All other heals in the battle have 20% more effectiveness and all heals outside of battle are 100% more effective.
       `,
+      background: ["#ff88aa60", "#ff000000"]
   },
 
   {
@@ -367,6 +465,7 @@ const cards = [
       If the holder of this card has Chaos Harness (skillset or passive on the card) and this card is equipped as an Item, they can use the following ability:
       <br><strong>Chaos Control:</strong> Teleport behind one selected enemy and deal 45 ATK. The DEF of the target will only have half of its effectiveness.
     `,
+    background: ["#00ff0060", "#ff000000"]
   },
 
   {
@@ -378,6 +477,7 @@ const cards = [
     active: `
       <strong>Zeus:</strong> Call the god of thunder to smite a target enemy. It stuns Mechanical archetypes for two rounds, and sets nature archetypes on fire for 5 rounds dealing 5 damage each round. (-10 ENG, 6 Round Cooldown)
     `,
+    background: ["#ffff0060", "#ff000000"]
   },
 
   {
@@ -389,6 +489,7 @@ const cards = [
     active: `
       <strong>Push:</strong> Telekinetically throw an enemy, dealing 30 damage, stunning the enemy for one round (unless they just got out of stun the previous round) and lowering their DEX by 3 for 3 rounds. (-5 ENG, 6 Round Cooldown)
     `,
+    background: ["#00000060", "#ff000000"]
   }, //cumstone
   //...ok -brayden
 
@@ -487,7 +588,6 @@ const cards = [
       <br>or
       <br>Destroy on of the target enemy's Items/Skillsets (excluding Chaos Emeralds)
       `,
-
   },
 
   {
@@ -565,6 +665,36 @@ const cards = [
   }, //who the fuck is Jim anyway?
   //idk -brayden
 
+  {
+    name: "Russian Cuss Words",
+    type: "Skillset",
+    passives: `
+      <br>+10 DEF,
+      <br>+2 ATK,
+      <br>+1 ENG,
+      <br>-1 round stuntime if stun is fro more then 1 round,
+      <br>+2 Enemy DEF,
+    `,
+    ability: `
+      <br>Enter a state of drunkenness where every 3rd word is a fucking cuss word.
+      <br>+40% ATK,
+      <br>+3 ENG,
+      <br>-10 Enemy DEF,
+      <br>-5 DEF,
+      <br>+20% miss chance,
+      <br>-5% dodge chance + cannot be concealed or hidden
+    `,
+  },
+
+  {
+    name: "Our Father- Комбат",
+    type: "Skillset",
+    passives: `
+      Grans one action on the target team by default AND another addition action if there's more then 2 char cards in a team, one for every char card.
+      However the char card that this skillset is applied to takes 5 extra ATK from any direct attacks.
+    `,
+  },
+
   // ---------------------------------------------------------------------------
   // Events
   // ---------------------------------------------------------------------------
@@ -578,7 +708,7 @@ const cards = [
     <br><strong>Mechanical:</strong> Overheat within 3 rounds (stun for 1 round)
     <br><strong>Mythic</strong> Lover stamina by 2
     `,
-  },
+  }, //Literally just Arizona any time it's not winter
 
   {
     name: "Jim's Reckoning",
@@ -587,6 +717,14 @@ const cards = [
       <strong>Are you ready to have a bad time?:</strong> Everything in a 5inch² area on the map is instantly burned (take 5 damage each round for 5 rounds), poisoned (15 damage each round for 3 rounds), and a randomly selected character is reduced to 5 HP. Discard after card is used. (-5 ENG to everyone affected.)
     `,
   },
+
+  {
+    name: "Fortnite Storm",
+    type: "Event",
+    ability: `
+      <br><strong>Storm Circle Progression:</strong> Every 3 rounds, the storm ring around the map will grow in thickness by one inch. If a character is caught in the storm, they take the thickness of the storm ring in inches multiplied by 2 damage (e.g. 3 inch thickness is equal to 6 damage per round)
+    `,
+  }, //*struggles**breaks free of straightjacket*"number one victory royale, yeah fortnite about to get down- get down..."
 
   {
     name: "Snap of Thanos",
@@ -653,6 +791,7 @@ const cards = [
     name: "Rigby Blaze",
     type: "Art",
     image: "https://i.imgur.com/jQMhGIn.jpeg",
+    background: ["#dd00ff60", "#ff00aa60"],
     //I have a lot of self control, but some things in this world. -Leland (Monster Energy Enjoyer for those who don't know me IRL btw)
   },
 
@@ -666,7 +805,7 @@ const cards = [
     name: "'You Aight?'",
     type: "Art",
     image: "https://i.imgur.com/apwcpTG.jpeg",
-  },
+  },//"He's coughing blood, what do you think? Do you wanna fu-" -Leland does she though???? I'm way too curious and that joke is old, mb.
 
   {
     name: "Странное рождество...",
@@ -678,17 +817,42 @@ const cards = [
     name: "Lethal Popcorn Weapon",
     type: "Art",
     image: "https://i.imgur.com/vucQrKV.gif",
-  },
+  },//Might make this a weapon in-game.
 
   {
     name: "What the f### Scout?",
     type: "Art",
     image: "https://i.imgur.com/WuZhqqw.png",
-  },
+  },//What the fuck did I do? -Scout
 
   {
     name: "v0.1, yay!",
     type: "Art",
     image: "https://i.imgur.com/OazMwE6.gif",
+  },//yippie
+
+  {
+    name: "''Meep Meep''",
+    type: "Art",
+    image: "https://i.imgur.com/M8DkOhq.png",
+  },//I'm going to kill that blue fucking Rodent, both of them, I swear to god.
+  
+  {
+    name: "''My son has said so much about you, miss.''",
+    type: "Art",
+    image: "https://i.imgur.com/nvTpAzb.png",
+  },//This art actually wasn't by me. -Leland
+
+  {
+    name: "Our game is balanced, trust",
+    type: "Art",
+    image: "https://i.imgur.com/4T6DMQd.png",
+  },//NO THE FUCK IT IS NOT
+
+  {
+    name: "We... couldn't convince Toyota well enough.",
+    type: "Art",
+    image: "https://i.imgur.com/qwRl2r7.png",
   },
+  //despite the probably over a dozen other copyright violations, and yet we really care about Toyota.
 ];
