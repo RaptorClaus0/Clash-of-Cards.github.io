@@ -7,5 +7,5 @@ Thanks to Claude AI for helping with the code, this is my first real project, so
 Viewer discretion of index.html code is advised.
 
 Versions:
-    Current: V0.1.0
-    past: V0.0.1-0.0.84
+    Current: V0.1.14
+    past: V1.13-
