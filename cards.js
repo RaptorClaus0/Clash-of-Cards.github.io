@@ -49,6 +49,28 @@ const cards = [
   },//Just realized the colors, СЛАВА УКРАIНЕ!
 
   {
+    name: "Vincent Seergevich",
+    type: "Character",
+    archetype: "Nature",
+    hp: 220,
+    atk: 90,
+    def: 10,
+    dex: 15,
+    eng: 10,
+    passives: `<br>
+      Any firearm Vincent wields as an item will have 1.5x effectiveness, double if it's a pistol. <br><br>
+      Canonically 18 <br><br>
+      Subtract 15% from damage received (after DEF calculations) <br><br>
+      “Shrug it off”: Debuffs from the POI do not apply to Vincent. Additionally, any debuffs applied to Vincent only last one round or three rounds of it's meant to be permanent. <br><br>
+    `,
+    ability: `<br>
+      <strong>Not done yet:</strong> Upon the first time Vincent's HP dipping below 1, he will be healed to 40. The next time this happens, he will only be healed to 10. After that, the next time he dies he will have one more round in the game before truly dying.
+    `,
+    background: ["#000000", "#dd000060"]
+  },
+  //Fun fact- this character was originally made as part of a Sonic Fanfic. kill me. please.
+
+  {
     name: "Blaze the Cat",
     type: "Character",
     archetype: "Nature",
@@ -71,6 +93,8 @@ const cards = [
   //I am both, but I would rather be gay then date any female from our generation. -brayden
   //Based af I just jork it to Blaze and that's enough. -Leland
   //(one big update later) I still jork it to Blaze. -Leland
+  
+  //Okay not so much anymore. I still have it saved though. -Leland
 
   {
     name: "Silver the Hedgehog",
@@ -145,6 +169,7 @@ const cards = [
     `,
   }, //"This is a fighting tourny, kiddo. We're here to tussle!" -Honey after she uppercut Tails in the chin
   //I'd fuck this one just as hard -Leland Vincent Dawley, my full government name.
+  //I stand by this even still.
 
   {
     name: "Shadow the Hedgehog",
@@ -181,6 +206,23 @@ const cards = [
   },
 
   {
+    name: "Sonya Lycanthrope",
+    type: "Character",
+    archetype: "Nature",
+    hp: 210,
+    atk: 65,
+    def: 15,
+    dex: 16,
+    eng: 12,
+    passives: `
+      <strong>Morale Boost:</strong> Every turn Sonya does an action, all teammates recharge one extra ENG if not full, and 1 round will advance for Cooldowns and stun.
+      `,
+      ability: `
+      <strong>Bomb has been planted:</strong> Sonya will place a bomb that detonate the rounds after it is planted. If an enemy attacks the round before, that attacking card is dead. All other enemies take 40 blast damage. <br>(Sonya recharge this ability every time she enters a POI)
+      `,
+  },//I'd fuck her so hard- seriously bro, look up pictures of her.
+
+  {
     name: "Model A0001 Battle Droid",
     type: "Character",
     archetype: "Mechanical",
@@ -212,6 +254,8 @@ const cards = [
       <strong>say:</strong> "Bird, bird, buh-birds the word ah well the bird bird bird well the bird is the word." and stun a target enemy for 1 round or 3 rounds if it's a bird. (-3 ENG, 2 round cooldown)
       `,
   },//The horse is here?
+  //No umamuseme is in the Black Deck DLC (GODDAMNED IT I FUCKING HATE THOSE HORSES)
+  //I know Ryan would say "Bruh that fucking horse that I hate" I'll kill myself.
 
   {
     name: "Spy",
@@ -229,6 +273,8 @@ const cards = [
       <strong>Paper Maché:</strong> Wear the face and clothes of a defeated enemy or ally (+50% dodge chance)
       `,
   },//Has anybody happened to find the corpse of a red spy? No? Then we still have a problem.
+  //He could be any one of us- it could be you, it could me... it could even be-
+  //What, he said it was him. He'll turn red any second now- there! Oh wait, that's blood.
 
   {
     name: "AI Powered Microwave",
@@ -401,6 +447,14 @@ const cards = [
   //Richy rich over here. -Leland
 
   {
+    name: "Mountain Dew Voltage from 2013",
+    type: "Item",
+    passives: "All characters from video games on the applied character's team receive +20 buff to a random stat that changes every round. <br><br> All characters that are canonically under twenty will give their team one more action per round and have +5 maxENG",
+    
+    background: ["rgb(29, 0, 83)", "#1b171dbe"]
+  },//I had one of these way back in November 2013, don't ask how I remembered that cold night when I was 3 but I do. They... don't make it like they used to.
+
+  {
     name: "Engineer/Modder",
     type: "Item",
     passives: `
@@ -492,6 +546,7 @@ const cards = [
     background: ["#00000060", "#ff000000"]
   }, //cumstone
   //...ok -brayden
+  //I'm cumming.
 
   {
     name: "Jim's Soul",
@@ -642,7 +697,7 @@ const cards = [
     passives: `
       When the character this card is applied to dies, flip a coin (hide result from the enemy/enemies) and then either tell them the true result or lie to them. They then need to guess whether you're bluffing/lying about the result or not. If they correctly guess whether you're lying or not, they suffer 0 effects. If they are incorrect, the enemy that killed the character this card was applied to will take 1 damage, and then 2, then 4, 8, 16, 32, 64, so on and so forth until the target enemy character dies permanently for the game.
       `,
-  },
+  },//This film is good, it's about two guys and a few bags of Heroin.
 
   {
     name: "Personalized OST Skillset",
@@ -716,7 +771,15 @@ const cards = [
     ability: `
       <strong>Are you ready to have a bad time?:</strong> Everything in a 5inch² area on the map is instantly burned (take 5 damage each round for 5 rounds), poisoned (15 damage each round for 3 rounds), and a randomly selected character is reduced to 5 HP. Discard after card is used. (-5 ENG to everyone affected.)
     `,
-  },
+  },//Is that a fucking Undertale reference???
+
+  {
+    name: "<strong>Gladiate</strong> the Arena",
+    type: "Event",
+    ability: `
+      when this card is drawn, a random POI is replaced with one named Gladiate. Gladiate will inherit all buffs from the POI that got replaced. <br><br>All teams in the game will immediately be teleported here and will have to fight a random boss. PvP will have only half effectiveness except against the Game Master. PvP will be fully disabled for two rounds after the boss is defeated before returning to normal.
+    `,
+  },//Thumbs down.
 
   {
     name: "Fortnite Storm",
@@ -744,6 +807,7 @@ const cards = [
       <br>+10% chance to miss attacks (affects all archetypes)
     `,
   }, //war, war never changes
+  //WAR DOES CHANGE- FUCKING DRONES n' SHIT!
 
   {
     name: "Kolossos",
@@ -806,7 +870,7 @@ const cards = [
     type: "Art",
     image: "https://i.imgur.com/apwcpTG.jpeg",
   },//"He's coughing blood, what do you think? Do you wanna fu-" -Leland does she though???? I'm way too curious and that joke is old, mb.
-
+//I don't think she does. Go go super gadget rape-cock. I'M KIDDING I'M KIDDING- she's not real anyway.
   {
     name: "Странное рождество...",
     type: "Art",
@@ -836,6 +900,7 @@ const cards = [
     type: "Art",
     image: "https://i.imgur.com/M8DkOhq.png",
   },//I'm going to kill that blue fucking Rodent, both of them, I swear to god.
+  //You said it. -Wile E. Coyote
   
   {
     name: "''My son has said so much about you, miss.''",
@@ -848,11 +913,36 @@ const cards = [
     type: "Art",
     image: "https://i.imgur.com/4T6DMQd.png",
   },//NO THE FUCK IT IS NOT
+  //Shut up, no one will buy it then. Wait that was me earlier. FAH!
 
   {
     name: "We... couldn't convince Toyota well enough.",
     type: "Art",
     image: "https://i.imgur.com/qwRl2r7.png",
+  },//despite the probably over a dozen other copyright violations, and yet we really care about Toyota.
+
+  {
+    name: "WE LOVE DOYODA TAIGA!!!",
+    type: "Art",
+    image: "https://i.imgur.com/9d251cS.jpeg",
+  },//NO. THE FUCK. WE. DO NOT.
+
+  {
+    name: "Go f### yourself",
+    type: "Art",
+    image: "https://i.imgur.com/OOskERY.png",
+  },//Mari and Vincent would be a good couple, trust.
+
+  {
+    name: "Vincent and an AK-74. Peak.",
+    type: "Art",
+    image: "https://i.imgur.com/cymOgb3.png",
+  },//Peak.
+  
+  {
+    name: "This will be a P.O.I.",
+    type: "Art",
+    image: "https://i.imgur.com/rqflzZH.png",
   },
-  //despite the probably over a dozen other copyright violations, and yet we really care about Toyota.
+  //Imagine the Mankato Silo towers being replaced by a fucking Gladiator arena.
 ];
